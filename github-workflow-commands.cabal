@@ -1,0 +1,109 @@
+cabal-version: 1.18
+
+-- This file has been generated from package.yaml by hpack version 0.36.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           github-workflow-commands
+version:        0.0.0.0
+synopsis:       GitHub Actions workflow commands
+description:    For printing workflow commands in GitHub Actions.
+                .
+                See https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
+category:       Utils
+homepage:       https://github.com/freckle/github-workflow-commands#readme
+bug-reports:    https://github.com/freckle/github-workflow-commands/issues
+maintainer:     Freckle Education
+license:        MIT
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    package.yaml
+extra-doc-files:
+    README.md
+    CHANGELOG.md
+
+source-repository head
+  type: git
+  location: https://github.com/freckle/github-workflow-commands
+
+library
+  exposed-modules:
+      GitHub.Workflow.Command
+      GitHub.Workflow.Command.Message
+      GitHub.Workflow.Command.Name
+      GitHub.Workflow.Command.Properties
+      GitHub.Workflow.Command.Properties.Key
+      GitHub.Workflow.Command.Properties.Value
+  other-modules:
+      Paths_github_workflow_commands
+  hs-source-dirs:
+      library
+  default-extensions:
+      BlockArguments
+      DataKinds
+      DeriveAnyClass
+      DerivingStrategies
+      DerivingVia
+      DuplicateRecordFields
+      GADTs
+      LambdaCase
+      NoFieldSelectors
+      NoImplicitPrelude
+      NoMonomorphismRestriction
+      NoPostfixOperators
+      OverloadedRecordDot
+      OverloadedStrings
+      QuasiQuotes
+      TypeFamilies
+  ghc-options: -Weverything -Wno-all-missed-specialisations -Wno-missed-specialisations -Wno-missing-exported-signatures -Wno-missing-import-lists -Wno-missing-local-signatures -Wno-monomorphism-restriction -Wno-safe -Wno-unsafe
+  build-depends:
+      aeson
+    , base <5
+    , bytestring
+    , containers
+    , text
+  default-language: GHC2021
+  if impl(ghc >= 9.2)
+    ghc-options: -Wno-missing-kind-signatures
+  if impl(ghc >= 8.10)
+    ghc-options: -Wno-missing-safe-haskell-mode -Wno-prepositive-qualified-module
+
+test-suite spec
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      GitHub.Workflow.CommandSpec
+      SpecHook
+      Paths_github_workflow_commands
+  hs-source-dirs:
+      tests
+  default-extensions:
+      BlockArguments
+      DataKinds
+      DeriveAnyClass
+      DerivingStrategies
+      DerivingVia
+      DuplicateRecordFields
+      GADTs
+      LambdaCase
+      NoFieldSelectors
+      NoImplicitPrelude
+      NoMonomorphismRestriction
+      NoPostfixOperators
+      OverloadedRecordDot
+      OverloadedStrings
+      QuasiQuotes
+      TypeFamilies
+  ghc-options: -Weverything -Wno-all-missed-specialisations -Wno-missed-specialisations -Wno-missing-exported-signatures -Wno-missing-import-lists -Wno-missing-local-signatures -Wno-monomorphism-restriction -Wno-safe -Wno-unsafe -threaded -rtsopts "-with-rtsopts=-N"
+  build-depends:
+      base <5
+    , github-workflow-commands
+    , hspec
+    , hspec-junit-formatter
+    , text
+  default-language: GHC2021
+  if impl(ghc >= 9.2)
+    ghc-options: -Wno-missing-kind-signatures
+  if impl(ghc >= 8.10)
+    ghc-options: -Wno-missing-safe-haskell-mode -Wno-prepositive-qualified-module
