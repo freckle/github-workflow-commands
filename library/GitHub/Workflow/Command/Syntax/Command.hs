@@ -32,6 +32,11 @@ instance HasMessage Command where
 instance HasProperties Command where
   properties = lens (.properties) \x y -> x {properties = y}
 
+-- | Construct a minimal command with a command 'Name' e.g. "warning" or "error"
+--
+-- See the 'GitHub.Workflow.Command.Syntax.Properties.property' and
+-- 'GitHub.Workflow.Command.Syntax.Message.message' lenses for other
+-- information include in a command.
 command :: Name -> Command
 command x =
   Command

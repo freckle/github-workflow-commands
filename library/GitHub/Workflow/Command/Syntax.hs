@@ -8,10 +8,10 @@ module GitHub.Workflow.Command.Syntax
   , Message
 
     -- * Working with commands
-  , TextIso (..)
   , command
-  , HasMessage (..)
   , property
+  , TextIso (..)
+  , HasMessage (..)
   , HasProperties (..)
 
     -- * Printing commands
