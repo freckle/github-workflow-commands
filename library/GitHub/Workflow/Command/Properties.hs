@@ -5,7 +5,6 @@ module GitHub.Workflow.Command.Properties
   , Key
   , Value
   , empty
-  , set
   , null
   ) where
 
@@ -28,9 +27,6 @@ newtype Properties = Properties {map :: Map Key Value}
 
 empty :: Properties
 empty = Properties Map.empty
-
-set :: Key -> Value -> Properties -> Properties
-set k v = Properties . Map.insert k v . (.map)
 
 null :: Properties -> Bool
 null = Map.null . (.map)
