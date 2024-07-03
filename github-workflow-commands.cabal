@@ -59,8 +59,7 @@ library
       TypeFamilies
   ghc-options: -fwrite-ide-info -Weverything -Wno-all-missed-specialisations -Wno-missed-specialisations -Wno-missing-exported-signatures -Wno-missing-import-lists -Wno-missing-local-signatures -Wno-monomorphism-restriction -Wno-safe -Wno-unsafe
   build-depends:
-      aeson
-    , base <5
+      base <5
     , bytestring
     , containers
     , text
@@ -102,7 +101,6 @@ test-suite spec
     , github-workflow-commands
     , hspec
     , hspec-junit-formatter
-    , text
   default-language: GHC2021
   if impl(ghc >= 9.2)
     ghc-options: -Wno-missing-kind-signatures

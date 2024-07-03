@@ -28,7 +28,7 @@ import Data.String (IsString (fromString))
 import GitHub.Workflow.Command.Fragment
 import GitHub.Workflow.Command.Message (Message)
 import GitHub.Workflow.Command.Name (Name)
-import GitHub.Workflow.Command.Properties (Key, Properties, ToValue, Value)
+import GitHub.Workflow.Command.Properties (Key, Properties, Value)
 import GitHub.Workflow.Command.Properties qualified as Properties
 import Prelude (Eq, Maybe (..), Ord, Show, not, (<>))
 
@@ -53,7 +53,7 @@ command x =
 message :: Message -> Command -> Command
 message m x = x {message = m}
 
-property :: ToValue v => Key -> v -> Command -> Command
+property :: Key -> Value -> Command -> Command
 property k v x = x {properties = Properties.set k v x.properties}
 
 instance Fragment Command where

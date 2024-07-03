@@ -63,7 +63,6 @@ default-extensions:
 library:
   source-dirs: library
   dependencies:
-    - aeson
     - bytestring
     - containers
     - text
@@ -77,4 +76,3 @@ tests:
       - github-workflow-commands
       - hspec
       - hspec-junit-formatter
-      - text

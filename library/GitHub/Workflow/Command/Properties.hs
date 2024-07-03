@@ -2,7 +2,6 @@ module GitHub.Workflow.Command.Properties
   ( Properties
   , Key
   , Value
-  , ToValue
   , empty
   , set
   , null
@@ -17,7 +16,7 @@ import Data.Map.Strict qualified as Map
 import Data.Semigroup
 import GitHub.Workflow.Command.Fragment
 import GitHub.Workflow.Command.Properties.Key (Key)
-import GitHub.Workflow.Command.Properties.Value (ToValue, Value, toValue)
+import GitHub.Workflow.Command.Properties.Value (Value)
 import Prelude (Bool, Eq, Ord, Show)
 
 newtype Properties = Properties {map :: Map Key Value}
@@ -26,8 +25,8 @@ newtype Properties = Properties {map :: Map Key Value}
 empty :: Properties
 empty = Properties Map.empty
 
-set :: ToValue v => Key -> v -> Properties -> Properties
-set k v = Properties . Map.insert k (toValue v) . (.map)
+set :: Key -> Value -> Properties -> Properties
+set k v = Properties . Map.insert k v . (.map)
 
 null :: Properties -> Bool
 null = Map.null . (.map)
