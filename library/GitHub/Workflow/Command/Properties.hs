@@ -12,7 +12,7 @@ import Control.Category
 import Control.Monad (mfilter)
 import Data.Bool (not)
 import Data.ByteString.Builder qualified as BSB
-import Data.Foldable qualified as Foldable
+import Data.Foldable (fold)
 import Data.Functor
 import Data.List qualified as List
 import Data.Map.Strict (Map)
@@ -37,7 +37,7 @@ set k v = Properties . Map.insert k (toValue v) . (.map)
 toByteStringBuilder :: Properties -> Maybe BSB.Builder
 toByteStringBuilder =
   fmap
-    ( Foldable.fold
+    ( fold
         . List.intersperse ","
         . fmap
           ( \(key, value) ->

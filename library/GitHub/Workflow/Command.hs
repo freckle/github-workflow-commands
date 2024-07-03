@@ -23,7 +23,7 @@ import Control.Category
 import Data.ByteString
 import Data.ByteString.Builder qualified as BSB
 import Data.ByteString.Lazy qualified as BSL
-import Data.Foldable qualified as Foldable
+import Data.Foldable (foldMap)
 import Data.Maybe (Maybe)
 import Data.String (IsString (fromString))
 import GitHub.Workflow.Command.Message (Message)
@@ -62,7 +62,7 @@ toByteStringBuilder :: Command -> BSB.Builder
 toByteStringBuilder x =
   "::"
     <> Name.toByteStringBuilder x.name
-    <> Foldable.foldMap @Maybe (" " <>) (Properties.toByteStringBuilder x.properties)
+    <> foldMap @Maybe (" " <>) (Properties.toByteStringBuilder x.properties)
     <> "::"
     <> Message.toByteStringBuilder x.message
 
