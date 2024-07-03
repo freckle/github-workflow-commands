@@ -1,0 +1,80 @@
+name: github-workflow-commands
+version: 0.0.0.0
+maintainer: Freckle Education
+category: Utils
+github: freckle/github-workflow-commands
+synopsis: GitHub Actions workflow commands
+description: |
+  For printing workflow commands in GitHub Actions.
+
+  See https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
+
+extra-doc-files:
+  - README.md
+  - CHANGELOG.md
+
+extra-source-files:
+  - package.yaml
+
+ghc-options:
+  - -fwrite-ide-info
+  - -Weverything
+  - -Wno-all-missed-specialisations
+  - -Wno-missed-specialisations
+  - -Wno-missing-exported-signatures
+  - -Wno-missing-import-lists
+  - -Wno-missing-local-signatures
+  - -Wno-monomorphism-restriction
+  - -Wno-safe
+  - -Wno-unsafe
+
+when:
+  - condition: "impl(ghc >= 9.2)"
+    ghc-options:
+      - -Wno-missing-kind-signatures
+  - condition: "impl(ghc >= 8.10)"
+    ghc-options:
+      - -Wno-missing-safe-haskell-mode
+      - -Wno-prepositive-qualified-module
+
+dependencies:
+  - base < 5
+
+language: GHC2021
+
+default-extensions:
+  - BlockArguments
+  - DataKinds
+  - DeriveAnyClass
+  - DerivingStrategies
+  - DerivingVia
+  - DuplicateRecordFields
+  - GADTs
+  - LambdaCase
+  - NoFieldSelectors
+  - NoImplicitPrelude
+  - NoMonomorphismRestriction
+  - NoPostfixOperators
+  - OverloadedRecordDot
+  - OverloadedStrings
+  - QuasiQuotes
+  - TypeFamilies
+
+library:
+  source-dirs: library
+  dependencies:
+    - bytestring
+    - containers
+    - lens
+    - text
+
+tests:
+  spec:
+    main: Spec.hs
+    source-dirs: tests
+    ghc-options: -threaded -rtsopts "-with-rtsopts=-N"
+    dependencies:
+      - github-workflow-commands
+      - hspec
+      - hspec-junit-formatter
+      - lens
