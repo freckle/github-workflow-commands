@@ -21,16 +21,12 @@ newtype Value = Value {json :: Aeson.Value}
 type ToValue = Aeson.ToJSON
 
 toValue :: ToValue a => a -> Value
-toValue = Aeson.toJSON >>> Value
+toValue = Value . Aeson.toJSON
 
 toByteStringBuilder :: Value -> BSB.Builder
 toByteStringBuilder =
-  (.json)
-    >>> \case
-      Aeson.Null -> Monoid.mempty
-      Aeson.String x -> TL.fromStrict x
-      x -> Aeson.encodeToLazyText x
-    >>> TL.concatMap
+  TL.encodeUtf8Builder
+    . TL.concatMap
       ( \case
           '%' -> "%25"
           '\r' -> "%0D"
@@ -39,4 +35,9 @@ toByteStringBuilder =
           ',' -> "%2C"
           x -> TL.singleton x
       )
-    >>> TL.encodeUtf8Builder
+    . ( \case
+          Aeson.Null -> Monoid.mempty
+          Aeson.String x -> TL.fromStrict x
+          x -> Aeson.encodeToLazyText x
+      )
+    . (.json)

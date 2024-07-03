@@ -16,12 +16,12 @@ newtype Message = Message {text :: Text}
 
 toByteStringBuilder :: Message -> BSB.Builder
 toByteStringBuilder =
-  (.text)
-    >>> T.concatMap
+  T.encodeUtf8Builder
+    . T.concatMap
       ( \case
           '%' -> "%25"
           '\r' -> "%0D"
           '\n' -> "%0A"
           x -> T.singleton x
       )
-    >>> T.encodeUtf8Builder
+    . (.text)

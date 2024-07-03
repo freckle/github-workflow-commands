@@ -32,19 +32,19 @@ empty :: Properties
 empty = Properties Map.empty
 
 set :: ToValue v => Key -> v -> Properties -> Properties
-set k v = (.map) >>> Map.insert k (toValue v) >>> Properties
+set k v = Properties . Map.insert k (toValue v) . (.map)
 
 toByteStringBuilder :: Properties -> Maybe BSB.Builder
 toByteStringBuilder =
-  (.map)
-    >>> Just
-    >>> mfilter (not . Map.null)
-    >>> fmap
-      ( Map.toAscList
-          >>> fmap
-            ( \(key, value) ->
-                Key.toByteStringBuilder key <> "=" <> Value.toByteStringBuilder value
-            )
-          >>> List.intersperse ","
-          >>> Foldable.fold
-      )
+  fmap
+    ( Foldable.fold
+        . List.intersperse ","
+        . fmap
+          ( \(key, value) ->
+              Key.toByteStringBuilder key <> "=" <> Value.toByteStringBuilder value
+          )
+        . Map.toAscList
+    )
+    . mfilter (not . Map.null)
+    . Just
+    . (.map)

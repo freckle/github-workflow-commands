@@ -14,4 +14,4 @@ newtype Key = Key {text :: Text}
   deriving newtype (Eq, Ord, Show, IsString)
 
 toByteStringBuilder :: Key -> BSB.Builder
-toByteStringBuilder = (.text) >>> T.encodeUtf8Builder
+toByteStringBuilder = T.encodeUtf8Builder . (.text)

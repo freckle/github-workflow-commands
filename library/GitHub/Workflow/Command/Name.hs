@@ -16,6 +16,6 @@ newtype Name = Name {text :: Text}
 
 toByteStringBuilder :: Name -> BSB.Builder
 toByteStringBuilder =
-  (.text)
-    >>> (\x -> if T.null x then "missing.command" else x)
-    >>> T.encodeUtf8Builder
+  T.encodeUtf8Builder
+    . (\x -> if T.null x then "missing.command" else x)
+    . (.text)

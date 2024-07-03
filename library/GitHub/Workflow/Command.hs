@@ -42,7 +42,7 @@ data Command = Command
   deriving stock (Eq, Ord, Show)
 
 instance IsString Command where
-  fromString = fromString @Name >>> command
+  fromString = command . fromString
 
 command :: Name -> Command
 command x =
@@ -67,4 +67,4 @@ toByteStringBuilder x =
     <> Message.toByteStringBuilder x.message
 
 toByteString :: Command -> ByteString
-toByteString = toByteStringBuilder >>> BSB.toLazyByteString >>> BSL.toStrict
+toByteString = BSL.toStrict . BSB.toLazyByteString . toByteStringBuilder
