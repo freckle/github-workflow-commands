@@ -1,21 +1,20 @@
 module GitHub.Workflow.Command.Name
   ( Name
-  , toByteStringBuilder
   ) where
 
 import Control.Category
-import Data.ByteString.Builder qualified as BSB
 import Data.String (IsString)
 import Data.Text (Text)
 import Data.Text qualified as T
 import Data.Text.Encoding qualified as T
+import GitHub.Workflow.Command.Fragment
 import Prelude (Eq, Ord, Show)
 
 newtype Name = Name {text :: Text}
   deriving newtype (Eq, Ord, Show, IsString)
 
-toByteStringBuilder :: Name -> BSB.Builder
-toByteStringBuilder =
-  T.encodeUtf8Builder
-    . (\x -> if T.null x then "missing.command" else x)
-    . (.text)
+instance Fragment Name where
+  toByteStringBuilder =
+    T.encodeUtf8Builder
+      . (\x -> if T.null x then "missing.command" else x)
+      . (.text)

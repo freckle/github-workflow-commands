@@ -30,6 +30,7 @@ source-repository head
 library
   exposed-modules:
       GitHub.Workflow.Command
+      GitHub.Workflow.Command.Fragment
       GitHub.Workflow.Command.Message
       GitHub.Workflow.Command.Name
       GitHub.Workflow.Command.Properties

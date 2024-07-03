@@ -15,24 +15,22 @@ module GitHub.Workflow.Command
   , property
 
     -- * Printing commands
+  , Fragment
   , toByteString
   , toByteStringBuilder
   ) where
 
 import Control.Category
-import Data.ByteString
-import Data.ByteString.Builder qualified as BSB
-import Data.ByteString.Lazy qualified as BSL
+import Control.Monad (mfilter)
 import Data.Foldable (foldMap)
 import Data.Maybe (Maybe)
 import Data.String (IsString (fromString))
+import GitHub.Workflow.Command.Fragment
 import GitHub.Workflow.Command.Message (Message)
-import GitHub.Workflow.Command.Message qualified as Message
 import GitHub.Workflow.Command.Name (Name)
-import GitHub.Workflow.Command.Name qualified as Name
 import GitHub.Workflow.Command.Properties (Key, Properties, ToValue, Value)
 import GitHub.Workflow.Command.Properties qualified as Properties
-import Prelude (Eq, Ord, Show, (<>))
+import Prelude (Eq, Maybe (..), Ord, Show, not, (<>))
 
 data Command = Command
   { name :: Name
@@ -58,13 +56,12 @@ message m x = x {message = m}
 property :: ToValue v => Key -> v -> Command -> Command
 property k v x = x {properties = Properties.set k v x.properties}
 
-toByteStringBuilder :: Command -> BSB.Builder
-toByteStringBuilder x =
-  "::"
-    <> Name.toByteStringBuilder x.name
-    <> foldMap @Maybe (" " <>) (Properties.toByteStringBuilder x.properties)
-    <> "::"
-    <> Message.toByteStringBuilder x.message
-
-toByteString :: Command -> ByteString
-toByteString = BSL.toStrict . BSB.toLazyByteString . toByteStringBuilder
+instance Fragment Command where
+  toByteStringBuilder x =
+    "::"
+      <> toByteStringBuilder x.name
+      <> foldMap @Maybe
+        (\p -> " " <> toByteStringBuilder p)
+        (mfilter (not . Properties.null) (Just x.properties))
+      <> "::"
+      <> toByteStringBuilder x.message
