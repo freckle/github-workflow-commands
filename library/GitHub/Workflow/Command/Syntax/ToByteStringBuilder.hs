@@ -1,4 +1,4 @@
-module GitHub.Workflow.Command.ToByteStringBuilder
+module GitHub.Workflow.Command.Syntax.ToByteStringBuilder
   ( ToByteStringBuilder (..)
   , toByteString
   ) where

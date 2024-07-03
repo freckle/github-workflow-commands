@@ -1,25 +1,6 @@
-module GitHub.Workflow.Command
-  ( -- * The Command type
-    Command
-
-    -- * Ancillary types
-  , Name
-  , Properties
-  , Key
-  , Value
-  , Message
-
-    -- * Working with commands
-  , TextIso (..)
+module GitHub.Workflow.Command.Syntax.Command
+  ( Command
   , command
-  , HasMessage (..)
-  , property
-  , HasProperties (..)
-
-    -- * Printing commands
-  , ToByteStringBuilder
-  , toByteString
-  , toByteStringBuilder
   ) where
 
 import Control.Category
@@ -28,18 +9,11 @@ import Control.Monad (mfilter)
 import Data.Foldable (foldMap)
 import Data.Maybe (Maybe)
 import Data.String (IsString (fromString))
-import GitHub.Workflow.Command.Message (HasMessage (..), Message)
-import GitHub.Workflow.Command.Name (Name)
-import GitHub.Workflow.Command.Properties
-  ( HasProperties (..)
-  , Key
-  , Properties
-  , Value
-  , property
-  )
-import GitHub.Workflow.Command.Properties qualified as Properties
-import GitHub.Workflow.Command.TextIso (TextIso (..))
-import GitHub.Workflow.Command.ToByteStringBuilder
+import GitHub.Workflow.Command.Syntax.Message
+import GitHub.Workflow.Command.Syntax.Name
+import GitHub.Workflow.Command.Syntax.Properties
+import GitHub.Workflow.Command.Syntax.Properties qualified as Properties
+import GitHub.Workflow.Command.Syntax.ToByteStringBuilder
 import Prelude (Eq, Maybe (..), Ord, Show, not, (<>))
 
 data Command = Command

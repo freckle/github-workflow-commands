@@ -29,14 +29,15 @@ source-repository head
 
 library
   exposed-modules:
-      GitHub.Workflow.Command
-      GitHub.Workflow.Command.Message
-      GitHub.Workflow.Command.Name
-      GitHub.Workflow.Command.Properties
-      GitHub.Workflow.Command.Properties.Key
-      GitHub.Workflow.Command.Properties.Value
-      GitHub.Workflow.Command.TextIso
-      GitHub.Workflow.Command.ToByteStringBuilder
+      GitHub.Workflow.Command.Syntax
+      GitHub.Workflow.Command.Syntax.Command
+      GitHub.Workflow.Command.Syntax.Key
+      GitHub.Workflow.Command.Syntax.Message
+      GitHub.Workflow.Command.Syntax.Name
+      GitHub.Workflow.Command.Syntax.Properties
+      GitHub.Workflow.Command.Syntax.TextIso
+      GitHub.Workflow.Command.Syntax.ToByteStringBuilder
+      GitHub.Workflow.Command.Syntax.Value
   other-modules:
       Paths_github_workflow_commands
   hs-source-dirs:

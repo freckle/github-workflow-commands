@@ -1,4 +1,4 @@
-module GitHub.Workflow.Command.Message
+module GitHub.Workflow.Command.Syntax.Message
   ( Message
   , HasMessage (..)
   ) where
@@ -9,8 +9,8 @@ import Data.String (IsString)
 import Data.Text (Text)
 import Data.Text qualified as T
 import Data.Text.Encoding qualified as T
-import GitHub.Workflow.Command.TextIso
-import GitHub.Workflow.Command.ToByteStringBuilder
+import GitHub.Workflow.Command.Syntax.TextIso
+import GitHub.Workflow.Command.Syntax.ToByteStringBuilder
 import Prelude (Eq, Ord, Show)
 
 newtype Message = Message {text :: Text}

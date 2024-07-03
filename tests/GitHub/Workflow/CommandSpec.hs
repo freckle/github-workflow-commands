@@ -5,8 +5,7 @@ module GitHub.Workflow.CommandSpec
 import Control.Lens
 import Data.Function (($))
 import Data.Maybe (Maybe (..))
-import GitHub.Workflow.Command (command, message, property)
-import GitHub.Workflow.Command qualified as Command
+import GitHub.Workflow.Command.Syntax
 import Test.Hspec
 
 spec :: Spec
@@ -15,7 +14,7 @@ spec =
     do
       specify "error" $
         shouldBe
-          ( Command.toByteString $
+          ( toByteString $
               command "error"
                 & set message "Missing semicolon"
                 & set (property "file") (Just "app.js")
@@ -25,7 +24,7 @@ spec =
 
       specify "debug" $
         shouldBe
-          ( Command.toByteString $
+          ( toByteString $
               command "debug"
                 & set message "Set the Octocat variable"
           )

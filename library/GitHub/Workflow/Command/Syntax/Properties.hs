@@ -1,9 +1,7 @@
-module GitHub.Workflow.Command.Properties
+module GitHub.Workflow.Command.Syntax.Properties
   ( Properties
   , HasProperties (..)
   , property
-  , Key
-  , Value
   , empty
   , null
   ) where
@@ -17,9 +15,9 @@ import Data.Map.Strict (Map)
 import Data.Map.Strict qualified as Map
 import Data.Maybe (Maybe (..))
 import Data.Semigroup
-import GitHub.Workflow.Command.Properties.Key (Key)
-import GitHub.Workflow.Command.Properties.Value (Value)
-import GitHub.Workflow.Command.ToByteStringBuilder
+import GitHub.Workflow.Command.Syntax.Key (Key)
+import GitHub.Workflow.Command.Syntax.ToByteStringBuilder
+import GitHub.Workflow.Command.Syntax.Value (Value)
 import Prelude (Bool, Eq, Ord, Show)
 
 newtype Properties = Properties {map :: Map Key Value}
