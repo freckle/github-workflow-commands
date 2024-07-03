@@ -8,22 +8,23 @@ module GitHub.Workflow.Command.Properties
   , toByteStringBuilder
   ) where
 
-import Control.Category
-import Control.Monad (mfilter)
-import Data.Bool (not)
-import Data.ByteString.Builder qualified as BSB
-import Data.Foldable qualified as Foldable
-import Data.Functor
-import Data.List qualified as List
-import Data.Map.Strict (Map)
-import Data.Map.Strict qualified as Map
-import Data.Maybe (Maybe (..))
-import Data.Semigroup
-import GitHub.Workflow.Command.Properties.Key (Key)
-import GitHub.Workflow.Command.Properties.Key qualified as Key
-import GitHub.Workflow.Command.Properties.Value (ToValue, Value, toValue)
-import GitHub.Workflow.Command.Properties.Value qualified as Value
-import Prelude (Eq, Ord, Show)
+import           Control.Category
+import           Control.Monad                            (mfilter)
+import           Data.Bool                                (not)
+import qualified Data.ByteString.Builder                  as BSB
+import qualified Data.Foldable                            as Foldable
+import           Data.Functor
+import qualified Data.List                                as List
+import           Data.Map.Strict                          (Map)
+import qualified Data.Map.Strict                          as Map
+import           Data.Maybe                               (Maybe (..))
+import           Data.Semigroup
+import           GitHub.Workflow.Command.Properties.Key   (Key)
+import qualified GitHub.Workflow.Command.Properties.Key   as Key
+import           GitHub.Workflow.Command.Properties.Value (ToValue, Value,
+                                                           toValue)
+import qualified GitHub.Workflow.Command.Properties.Value as Value
+import           Prelude                                  (Eq, Ord, Show)
 
 newtype Properties = Properties {map :: Map Key Value}
   deriving stock (Eq, Ord, Show)

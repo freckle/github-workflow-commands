@@ -2,12 +2,12 @@ module GitHub.Workflow.CommandSpec
   ( spec
   ) where
 
-import Data.Function
-import Data.Text (Text)
-import GitHub.Workflow.Command (message, property)
-import GitHub.Workflow.Command qualified as Command
-import Numeric.Natural (Natural)
-import Test.Hspec
+import           Data.Function
+import           Data.Text               (Text)
+import           GitHub.Workflow.Command (message, property)
+import qualified GitHub.Workflow.Command as Command
+import           Numeric.Natural         (Natural)
+import           Test.Hspec
 
 spec :: Spec
 spec =

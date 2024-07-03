@@ -19,25 +19,26 @@ module GitHub.Workflow.Command
   , toByteStringBuilder
   ) where
 
-import Control.Category
-import Data.ByteString
-import Data.ByteString.Builder qualified as BSB
-import Data.ByteString.Lazy qualified as BSL
-import Data.Foldable qualified as Foldable
-import Data.Maybe (Maybe)
-import Data.String (IsString (fromString))
-import GitHub.Workflow.Command.Message (Message)
-import GitHub.Workflow.Command.Message qualified as Message
-import GitHub.Workflow.Command.Name (Name)
-import GitHub.Workflow.Command.Name qualified as Name
-import GitHub.Workflow.Command.Properties (Key, Properties, ToValue, Value)
-import GitHub.Workflow.Command.Properties qualified as Properties
-import Prelude (Eq, Ord, Show, (<>))
+import           Control.Category
+import           Data.ByteString
+import qualified Data.ByteString.Builder            as BSB
+import qualified Data.ByteString.Lazy               as BSL
+import qualified Data.Foldable                      as Foldable
+import           Data.Maybe                         (Maybe)
+import           Data.String                        (IsString (fromString))
+import           GitHub.Workflow.Command.Message    (Message)
+import qualified GitHub.Workflow.Command.Message    as Message
+import           GitHub.Workflow.Command.Name       (Name)
+import qualified GitHub.Workflow.Command.Name       as Name
+import           GitHub.Workflow.Command.Properties (Key, Properties, ToValue,
+                                                     Value)
+import qualified GitHub.Workflow.Command.Properties as Properties
+import           Prelude                            (Eq, Ord, Show, (<>))
 
 data Command = Command
-  { name :: Name
+  { name       :: Name
   , properties :: Properties
-  , message :: Message
+  , message    :: Message
   }
   deriving stock (Eq, Ord, Show)
 
