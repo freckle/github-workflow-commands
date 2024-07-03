@@ -30,12 +30,13 @@ source-repository head
 library
   exposed-modules:
       GitHub.Workflow.Command
-      GitHub.Workflow.Command.Fragment
       GitHub.Workflow.Command.Message
       GitHub.Workflow.Command.Name
       GitHub.Workflow.Command.Properties
       GitHub.Workflow.Command.Properties.Key
       GitHub.Workflow.Command.Properties.Value
+      GitHub.Workflow.Command.TextIso
+      GitHub.Workflow.Command.ToByteStringBuilder
   other-modules:
       Paths_github_workflow_commands
   hs-source-dirs:
@@ -62,6 +63,7 @@ library
       base <5
     , bytestring
     , containers
+    , lens
     , text
   default-language: GHC2021
   if impl(ghc >= 9.2)
@@ -101,6 +103,7 @@ test-suite spec
     , github-workflow-commands
     , hspec
     , hspec-junit-formatter
+    , lens
   default-language: GHC2021
   if impl(ghc >= 9.2)
     ghc-options: -Wno-missing-kind-signatures

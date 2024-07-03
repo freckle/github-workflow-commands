@@ -65,6 +65,7 @@ library:
   dependencies:
     - bytestring
     - containers
+    - lens
     - text
 
 tests:
@@ -76,3 +77,4 @@ tests:
       - github-workflow-commands
       - hspec
       - hspec-junit-formatter
+      - lens

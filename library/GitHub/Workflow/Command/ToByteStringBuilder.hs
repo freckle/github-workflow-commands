@@ -1,5 +1,5 @@
-module GitHub.Workflow.Command.Fragment
-  ( Fragment (..)
+module GitHub.Workflow.Command.ToByteStringBuilder
+  ( ToByteStringBuilder (..)
   , toByteString
   ) where
 
@@ -8,8 +8,8 @@ import Data.ByteString
 import Data.ByteString.Builder qualified as BSB
 import Data.ByteString.Lazy qualified as BSL
 
-class Fragment a where
+class ToByteStringBuilder a where
   toByteStringBuilder :: a -> BSB.Builder
 
-toByteString :: Fragment a => a -> ByteString
+toByteString :: ToByteStringBuilder a => a -> ByteString
 toByteString = BSL.toStrict . BSB.toLazyByteString . toByteStringBuilder

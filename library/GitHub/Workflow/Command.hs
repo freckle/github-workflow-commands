@@ -9,27 +9,37 @@ module GitHub.Workflow.Command
   , Value
   , Message
 
-    -- * Building commands
+    -- * Working with commands
+  , TextIso (..)
   , command
-  , message
+  , HasMessage (..)
   , property
+  , HasProperties (..)
 
     -- * Printing commands
-  , Fragment
+  , ToByteStringBuilder
   , toByteString
   , toByteStringBuilder
   ) where
 
 import Control.Category
+import Control.Lens (lens)
 import Control.Monad (mfilter)
 import Data.Foldable (foldMap)
 import Data.Maybe (Maybe)
 import Data.String (IsString (fromString))
-import GitHub.Workflow.Command.Fragment
-import GitHub.Workflow.Command.Message (Message)
+import GitHub.Workflow.Command.Message (HasMessage (..), Message)
 import GitHub.Workflow.Command.Name (Name)
-import GitHub.Workflow.Command.Properties (Key, Properties, Value)
+import GitHub.Workflow.Command.Properties
+  ( HasProperties (..)
+  , Key
+  , Properties
+  , Value
+  , property
+  )
 import GitHub.Workflow.Command.Properties qualified as Properties
+import GitHub.Workflow.Command.TextIso (TextIso (..))
+import GitHub.Workflow.Command.ToByteStringBuilder
 import Prelude (Eq, Maybe (..), Ord, Show, not, (<>))
 
 data Command = Command
@@ -42,6 +52,12 @@ data Command = Command
 instance IsString Command where
   fromString = command . fromString
 
+instance HasMessage Command where
+  message = lens (.message) \x y -> x {message = y}
+
+instance HasProperties Command where
+  properties = lens (.properties) \x y -> x {properties = y}
+
 command :: Name -> Command
 command x =
   Command
@@ -50,13 +66,7 @@ command x =
     , message = ""
     }
 
-message :: Message -> Command -> Command
-message m x = x {message = m}
-
-property :: Key -> Value -> Command -> Command
-property k v x = x {properties = Properties.set k v x.properties}
-
-instance Fragment Command where
+instance ToByteStringBuilder Command where
   toByteStringBuilder x =
     "::"
       <> toByteStringBuilder x.name
