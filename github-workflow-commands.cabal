@@ -76,7 +76,7 @@ test-suite spec
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      GitHub.Workflow.CommandSpec
+      GitHub.Workflow.Command.SyntaxSpec
       SpecHook
       Paths_github_workflow_commands
   hs-source-dirs:
