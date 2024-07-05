@@ -1,4 +1,4 @@
-module GitHub.Workflow.Command.Syntax.TextIso
+module GitHub.Workflow.Command.Isomorphism.Text
   ( TextIso (..)
   ) where
 

@@ -29,20 +29,38 @@ source-repository head
 
 library
   exposed-modules:
+      GitHub.Workflow.Command.Annotation
+      GitHub.Workflow.Command.Annotation.Column
+      GitHub.Workflow.Command.Annotation.ColumnPosition
+      GitHub.Workflow.Command.Annotation.ColumnRange
+      GitHub.Workflow.Command.Annotation.Debug
+      GitHub.Workflow.Command.Annotation.Error
+      GitHub.Workflow.Command.Annotation.File
+      GitHub.Workflow.Command.Annotation.FilePosition
+      GitHub.Workflow.Command.Annotation.GenericAnnotation
+      GitHub.Workflow.Command.Annotation.Line
+      GitHub.Workflow.Command.Annotation.LineRange
+      GitHub.Workflow.Command.Annotation.Location
+      GitHub.Workflow.Command.Annotation.Notice
+      GitHub.Workflow.Command.Annotation.Properties
+      GitHub.Workflow.Command.Annotation.SingleLinePosition
+      GitHub.Workflow.Command.Annotation.Warning
+      GitHub.Workflow.Command.Isomorphism.Natural
+      GitHub.Workflow.Command.Isomorphism.Text
       GitHub.Workflow.Command.Syntax
       GitHub.Workflow.Command.Syntax.Command
       GitHub.Workflow.Command.Syntax.Key
       GitHub.Workflow.Command.Syntax.Message
       GitHub.Workflow.Command.Syntax.Name
       GitHub.Workflow.Command.Syntax.Properties
-      GitHub.Workflow.Command.Syntax.TextIso
-      GitHub.Workflow.Command.Syntax.ToByteStringBuilder
+      GitHub.Workflow.Command.Syntax.ToByteString
       GitHub.Workflow.Command.Syntax.Value
   other-modules:
       Paths_github_workflow_commands
   hs-source-dirs:
       library
   default-extensions:
+      AllowAmbiguousTypes
       BlockArguments
       DataKinds
       DeriveAnyClass
@@ -76,12 +94,14 @@ test-suite spec
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      GitHub.Workflow.Command.AnnotationSpec
       GitHub.Workflow.Command.SyntaxSpec
       SpecHook
       Paths_github_workflow_commands
   hs-source-dirs:
       tests
   default-extensions:
+      AllowAmbiguousTypes
       BlockArguments
       DataKinds
       DeriveAnyClass
