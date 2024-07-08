@@ -4,7 +4,7 @@ module GitHub.Workflow.Command.Annotation.Warning
   ) where
 
 import Control.Category
-import Control.Lens (lens, (?~))
+import Control.Lens (lens)
 import GitHub.Workflow.Command.Annotation.GenericAnnotation
 import GitHub.Workflow.Command.Annotation.Location
 import GitHub.Workflow.Command.Annotation.Properties
@@ -40,9 +40,6 @@ instance HasProperties Warning where
 
 instance HasLocationMaybe Warning where
   location = annotationProperties . location
-
-instance SetLocation Warning where
-  setLocation = (location ?~)
 
 instance FromMessage Warning where
   fromMessage = warning

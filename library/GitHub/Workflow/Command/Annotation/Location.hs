@@ -1,7 +1,6 @@
 module GitHub.Workflow.Command.Annotation.Location
   ( Location (..)
   , HasLocationMaybe (..)
-  , SetLocation (..)
   ) where
 
 import Control.Category
@@ -56,12 +55,6 @@ instance SetSingleLinePosition Location where
       { file = y.file
       , position = Just (fromSingleLinePosition x)
       }
-
-class SetLocation a where
-  setLocation :: Location -> a -> a
-
-instance SetLocation Location where
-  setLocation x _ = x
 
 instance SetFilePosition Location where
   setFilePosition x y = Location {file = y.file, position = Just x}

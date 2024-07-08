@@ -4,7 +4,7 @@ module GitHub.Workflow.Command.Annotation.Error
   ) where
 
 import Control.Category
-import Control.Lens (lens, (?~))
+import Control.Lens (lens)
 import GitHub.Workflow.Command.Annotation.GenericAnnotation
 import GitHub.Workflow.Command.Annotation.Location
 import GitHub.Workflow.Command.Annotation.Properties
@@ -40,9 +40,6 @@ instance HasProperties Error where
 
 instance HasLocationMaybe Error where
   location = annotationProperties . location
-
-instance SetLocation Error where
-  setLocation = (location ?~)
 
 instance FromMessage Error where
   fromMessage = error

@@ -38,9 +38,6 @@ class HasProperties a where
 instance HasProperties Properties where
   annotationProperties = simple
 
-instance SetLocation Properties where
-  setLocation x y = Properties {title = y.title, location = Just x}
-
 class GetProperties a where
   getProperties :: a -> Properties
 

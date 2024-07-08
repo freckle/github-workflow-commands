@@ -4,7 +4,7 @@ module GitHub.Workflow.Command.Annotation.GenericAnnotation
   ) where
 
 import Control.Category
-import Control.Lens (Iso', iso, over, (.~), (?~), (^.))
+import Control.Lens (Iso', iso, over, (.~), (^.))
 import GitHub.Workflow.Command.Annotation.Location
 import GitHub.Workflow.Command.Annotation.Properties
 import GitHub.Workflow.Command.Syntax
@@ -38,5 +38,5 @@ instance
       . (Syntax.message .~ (x ^. (unwrapped . Syntax.message)))
       . over Syntax.properties (Syntax.addToProperties (getProperties (x ^. unwrapped)))
 
-instance HasProperties a => SetLocation (GenericAnnotation a) where
-  setLocation = ((unwrapped . annotationProperties . location) ?~)
+instance HasProperties a => HasLocationMaybe (GenericAnnotation a) where
+  location = unwrapped . annotationProperties . location

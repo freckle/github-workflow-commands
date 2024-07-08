@@ -27,7 +27,6 @@ module GitHub.Workflow.Command.Annotation
     -- ** Location
   , Location (..)
   , HasLocationMaybe (..)
-  , SetLocation (..)
 
     -- ** File
   , File
