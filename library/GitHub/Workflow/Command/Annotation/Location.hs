@@ -6,6 +6,7 @@ module GitHub.Workflow.Command.Annotation.Location
 import Control.Category
 import Control.Lens (Lens', lens, re, simple, (?~), (^.))
 import Data.Maybe (Maybe (..), maybe)
+import Data.String (IsString (..))
 import GitHub.Workflow.Command.Annotation.File
 import GitHub.Workflow.Command.Annotation.FilePosition
 import GitHub.Workflow.Command.Annotation.LineRange
@@ -22,6 +23,9 @@ data Location = Location
   -- ^ The path of the file for which the annotation should be created
   , position :: Maybe FilePosition
   }
+
+instance IsString Location where
+  fromString = fromFile . fromString
 
 instance AddToProperties Location where
   addToProperties x =
