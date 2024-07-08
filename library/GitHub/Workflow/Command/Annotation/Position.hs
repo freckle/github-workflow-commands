@@ -13,8 +13,8 @@ import Control.Category
 import Control.Lens (Lens', lens, re, simple, (?~), (^.))
 import Control.Lens.TH
 import Data.Maybe (Maybe (..), maybe)
-import GitHub.Workflow.Command.Annotation.Column
-import GitHub.Workflow.Command.Annotation.Line
+import GitHub.Workflow.Command.Annotation.Position.Column
+import GitHub.Workflow.Command.Annotation.Position.Line
 import GitHub.Workflow.Command.Isomorphism.Text
 import GitHub.Workflow.Command.Syntax (AddToProperties (..), property)
 

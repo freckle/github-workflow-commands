@@ -1,4 +1,4 @@
-module GitHub.Workflow.Command.Annotation.Column
+module GitHub.Workflow.Command.Annotation.Position.Column
   ( Column
   , FromColumn (..)
   , HasColumn (..)

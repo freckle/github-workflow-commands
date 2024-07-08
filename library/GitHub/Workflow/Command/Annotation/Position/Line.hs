@@ -1,4 +1,4 @@
-module GitHub.Workflow.Command.Annotation.Line
+module GitHub.Workflow.Command.Annotation.Position.Line
   ( Line
   , FromLine (..)
   , HasLine (..)

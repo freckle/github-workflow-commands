@@ -30,16 +30,16 @@ source-repository head
 library
   exposed-modules:
       GitHub.Workflow.Command.Annotation
-      GitHub.Workflow.Command.Annotation.Column
       GitHub.Workflow.Command.Annotation.Commands.Debug
       GitHub.Workflow.Command.Annotation.Commands.Error
       GitHub.Workflow.Command.Annotation.Commands.Generic
       GitHub.Workflow.Command.Annotation.Commands.Notice
       GitHub.Workflow.Command.Annotation.Commands.Warning
       GitHub.Workflow.Command.Annotation.File
-      GitHub.Workflow.Command.Annotation.Line
       GitHub.Workflow.Command.Annotation.Location
       GitHub.Workflow.Command.Annotation.Position
+      GitHub.Workflow.Command.Annotation.Position.Column
+      GitHub.Workflow.Command.Annotation.Position.Line
       GitHub.Workflow.Command.Annotation.Properties
       GitHub.Workflow.Command.Isomorphism.Natural
       GitHub.Workflow.Command.Isomorphism.Text

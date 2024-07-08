@@ -51,15 +51,5 @@ instance HasPositionMaybe Location where
     (.position)
     \x y -> Location {file = x.file, position = y}
 
--- instance SetSingleLinePosition Location where
---   setSingleLinePosition x y =
---     Location
---       { file = y.file
---       , position = Just (fromSingleLinePosition x)
---       }
-
 instance SetPosition Location where
   setPosition x y = Location {file = y.file, position = Just x}
-
--- instance SetLineRange Location where
---   setLineRange x y = Location {file = y.file, position = Just (fromLineRange x)}

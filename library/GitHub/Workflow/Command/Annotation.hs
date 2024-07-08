@@ -65,15 +65,15 @@ module GitHub.Workflow.Command.Annotation
   , ToByteString (..)
   ) where
 
-import GitHub.Workflow.Command.Annotation.Column
 import GitHub.Workflow.Command.Annotation.Commands.Debug
 import GitHub.Workflow.Command.Annotation.Commands.Error
 import GitHub.Workflow.Command.Annotation.Commands.Notice
 import GitHub.Workflow.Command.Annotation.Commands.Warning
 import GitHub.Workflow.Command.Annotation.File
-import GitHub.Workflow.Command.Annotation.Line
 import GitHub.Workflow.Command.Annotation.Location
 import GitHub.Workflow.Command.Annotation.Position
+import GitHub.Workflow.Command.Annotation.Position.Column
+import GitHub.Workflow.Command.Annotation.Position.Line
 import GitHub.Workflow.Command.Annotation.Properties
 import GitHub.Workflow.Command.Isomorphism.Natural
 import GitHub.Workflow.Command.Isomorphism.Text
