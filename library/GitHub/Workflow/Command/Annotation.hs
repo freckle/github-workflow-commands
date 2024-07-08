@@ -33,10 +33,10 @@ module GitHub.Workflow.Command.Annotation
   , FromFile (..)
   , HasFile (..)
 
-    -- ** File position
-  , FilePosition (..)
-  , HasFilePositionMaybe (..)
-  , SetFilePosition (..)
+    -- ** Position
+  , Position (..)
+  , HasPositionMaybe (..)
+  , SetPosition (..)
 
     -- * Line
   , Line
@@ -86,11 +86,11 @@ import GitHub.Workflow.Command.Annotation.ColumnRange
 import GitHub.Workflow.Command.Annotation.Debug
 import GitHub.Workflow.Command.Annotation.Error
 import GitHub.Workflow.Command.Annotation.File
-import GitHub.Workflow.Command.Annotation.FilePosition
 import GitHub.Workflow.Command.Annotation.Line
 import GitHub.Workflow.Command.Annotation.LineRange
 import GitHub.Workflow.Command.Annotation.Location
 import GitHub.Workflow.Command.Annotation.Notice
+import GitHub.Workflow.Command.Annotation.Position
 import GitHub.Workflow.Command.Annotation.Properties
 import GitHub.Workflow.Command.Annotation.SingleLinePosition
 import GitHub.Workflow.Command.Annotation.Warning

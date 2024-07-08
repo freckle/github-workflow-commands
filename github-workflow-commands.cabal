@@ -36,12 +36,12 @@ library
       GitHub.Workflow.Command.Annotation.Debug
       GitHub.Workflow.Command.Annotation.Error
       GitHub.Workflow.Command.Annotation.File
-      GitHub.Workflow.Command.Annotation.FilePosition
       GitHub.Workflow.Command.Annotation.GenericAnnotation
       GitHub.Workflow.Command.Annotation.Line
       GitHub.Workflow.Command.Annotation.LineRange
       GitHub.Workflow.Command.Annotation.Location
       GitHub.Workflow.Command.Annotation.Notice
+      GitHub.Workflow.Command.Annotation.Position
       GitHub.Workflow.Command.Annotation.Properties
       GitHub.Workflow.Command.Annotation.SingleLinePosition
       GitHub.Workflow.Command.Annotation.Warning

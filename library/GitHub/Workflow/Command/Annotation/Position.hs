@@ -1,7 +1,7 @@
-module GitHub.Workflow.Command.Annotation.FilePosition
-  ( FilePosition (..)
-  , HasFilePositionMaybe (..)
-  , SetFilePosition (..)
+module GitHub.Workflow.Command.Annotation.Position
+  ( Position (..)
+  , HasPositionMaybe (..)
+  , SetPosition (..)
   ) where
 
 import Control.Category
@@ -13,32 +13,32 @@ import GitHub.Workflow.Command.Annotation.SingleLinePosition
 import GitHub.Workflow.Command.Syntax (AddToProperties (..))
 
 -- | Where an annotation is marked within a file
-data FilePosition
+data Position
   = SingleLine SingleLinePosition
   | MultiLine LineRange
 
-instance AddToProperties FilePosition where
+instance AddToProperties Position where
   addToProperties = \case
     SingleLine x -> addToProperties x
     MultiLine range -> addToProperties range
 
-class HasFilePositionMaybe a where
-  filePosition :: Lens' a (Maybe FilePosition)
+class HasPositionMaybe a where
+  position :: Lens' a (Maybe Position)
 
-instance HasFilePositionMaybe (Maybe FilePosition) where
-  filePosition = simple
+instance HasPositionMaybe (Maybe Position) where
+  position = simple
 
-instance FromSingleLinePosition FilePosition where
+instance FromSingleLinePosition Position where
   fromSingleLinePosition = SingleLine
 
-instance FromLineRange FilePosition where
+instance FromLineRange Position where
   fromLineRange = MultiLine
 
-class SetFilePosition a where
-  setFilePosition :: FilePosition -> a -> a
+class SetPosition a where
+  setPosition :: Position -> a -> a
 
-instance SetFilePosition FilePosition where
-  setFilePosition x _ = x
+instance SetPosition Position where
+  setPosition x _ = x
 
-instance FromLine FilePosition where
+instance FromLine Position where
   fromLine = SingleLine . fromLine

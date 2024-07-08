@@ -8,8 +8,8 @@ import Control.Lens (Lens', lens, re, simple, (?~), (^.))
 import Data.Maybe (Maybe (..), maybe)
 import Data.String (IsString (..))
 import GitHub.Workflow.Command.Annotation.File
-import GitHub.Workflow.Command.Annotation.FilePosition
 import GitHub.Workflow.Command.Annotation.LineRange
+import GitHub.Workflow.Command.Annotation.Position
 import GitHub.Workflow.Command.Annotation.SingleLinePosition
 import GitHub.Workflow.Command.Syntax
   ( AddToProperties (..)
@@ -21,7 +21,7 @@ import GitHub.Workflow.Command.Syntax
 data Location = Location
   { file :: File
   -- ^ The path of the file for which the annotation should be created
-  , position :: Maybe FilePosition
+  , position :: Maybe Position
   }
 
 instance IsString Location where
@@ -48,8 +48,8 @@ class HasLocationMaybe a where
 instance HasLocationMaybe (Maybe Location) where
   location = simple
 
-instance HasFilePositionMaybe Location where
-  filePosition = lens
+instance HasPositionMaybe Location where
+  position = lens
     (.position)
     \x y -> Location {file = x.file, position = y}
 
@@ -60,8 +60,8 @@ instance SetSingleLinePosition Location where
       , position = Just (fromSingleLinePosition x)
       }
 
-instance SetFilePosition Location where
-  setFilePosition x y = Location {file = y.file, position = Just x}
+instance SetPosition Location where
+  setPosition x y = Location {file = y.file, position = Just x}
 
 instance SetLineRange Location where
   setLineRange x y = Location {file = y.file, position = Just (fromLineRange x)}

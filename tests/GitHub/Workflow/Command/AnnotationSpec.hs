@@ -4,6 +4,7 @@ module GitHub.Workflow.Command.AnnotationSpec
 
 import Control.Lens ((?~))
 import Data.Function (($), (&))
+import Data.Maybe (Maybe (..))
 import GitHub.Workflow.Command.Annotation
 import Test.Hspec
 
@@ -25,7 +26,7 @@ spec =
     specify "error with line number" $
       toByteString
         ( error "Missing semicolon"
-            & location ?~ ("app.js" & setSingleLinePosition (fromLine 1))
+            & location ?~ ("app.js" & position ?~ fromLine 1)
         )
         `shouldBe` "::error file=app.js,line=1::Missing semicolon"
 
@@ -34,7 +35,9 @@ spec =
         ( notice "Missing semicolon"
             & location
               ?~ ( "app.js"
-                    & setSingleLinePosition (fromLine 1 & setColumnRange (ColumnRange 5 7))
+                    & position
+                      ?~ SingleLine
+                        SingleLinePosition {line = 1, column = Just $ MultiColumn $ ColumnRange 5 7}
                  )
         )
         `shouldBe` "::notice col=5,endColumn=7,file=app.js,line=1::Missing semicolon"
@@ -44,7 +47,9 @@ spec =
         ( warning "Missing semicolon"
             & location
               ?~ ( "app.js"
-                    & setSingleLinePosition (fromLine 1 & setColumnRange (ColumnRange 5 7))
+                    & position
+                      ?~ SingleLine
+                        SingleLinePosition {line = 1, column = Just $ MultiColumn $ ColumnRange 5 7}
                  )
         )
         `shouldBe` "::warning col=5,endColumn=7,file=app.js,line=1::Missing semicolon"
@@ -52,6 +57,6 @@ spec =
     specify "warning with line range" $
       toByteString
         ( warning "Missing semicolon"
-            & location ?~ ("app.js" & setLineRange (LineRange 13 16))
+            & location ?~ ("app.js" & position ?~ MultiLine (LineRange 13 16))
         )
         `shouldBe` "::warning endLine=16,file=app.js,line=13::Missing semicolon"
