@@ -26,10 +26,10 @@ instance NaturalIso Column where
   natural = iso (.natural) Column
 
 class FromColumn a where
-  fromColumn :: Column -> a
+  atColumn :: Column -> a
 
 instance FromColumn Column where
-  fromColumn = id
+  atColumn = id
 
 class HasColumn a where
   column :: Lens' a Column

@@ -26,10 +26,10 @@ instance NaturalIso Line where
   natural = iso (.natural) Line
 
 class FromLine a where
-  fromLine :: Line -> a
+  atLine :: Line -> a
 
 instance FromLine Line where
-  fromLine = id
+  atLine = id
 
 class HasLine a where
   line :: Lens' a Line

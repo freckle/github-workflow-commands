@@ -8,9 +8,7 @@ import Control.Lens (Lens', lens, re, simple, (?~), (^.))
 import Data.Maybe (Maybe (..), maybe)
 import Data.String (IsString (..))
 import GitHub.Workflow.Command.Annotation.File
-import GitHub.Workflow.Command.Annotation.LineRange
 import GitHub.Workflow.Command.Annotation.Position
-import GitHub.Workflow.Command.Annotation.SingleLinePosition
 import GitHub.Workflow.Command.Syntax
   ( AddToProperties (..)
   , Properties
@@ -53,15 +51,15 @@ instance HasPositionMaybe Location where
     (.position)
     \x y -> Location {file = x.file, position = y}
 
-instance SetSingleLinePosition Location where
-  setSingleLinePosition x y =
-    Location
-      { file = y.file
-      , position = Just (fromSingleLinePosition x)
-      }
+-- instance SetSingleLinePosition Location where
+--   setSingleLinePosition x y =
+--     Location
+--       { file = y.file
+--       , position = Just (fromSingleLinePosition x)
+--       }
 
 instance SetPosition Location where
   setPosition x y = Location {file = y.file, position = Just x}
 
-instance SetLineRange Location where
-  setLineRange x y = Location {file = y.file, position = Just (fromLineRange x)}
+-- instance SetLineRange Location where
+--   setLineRange x y = Location {file = y.file, position = Just (fromLineRange x)}
