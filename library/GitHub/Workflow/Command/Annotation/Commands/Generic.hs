@@ -4,7 +4,7 @@ module GitHub.Workflow.Command.Annotation.Commands.Generic
   ) where
 
 import Control.Category
-import Control.Lens (Iso', iso, over, (.~), (^.))
+import Control.Lens (Iso', coerced, over, (.~), (^.))
 import GitHub.Workflow.Command.Annotation.Location
 import GitHub.Workflow.Command.Annotation.Properties
 import GitHub.Workflow.Command.Syntax
@@ -22,7 +22,7 @@ class IsAnnotationType a where
 newtype GenericAnnotation a = GenericAnnotation a
 
 unwrapped :: Iso' (GenericAnnotation a) a
-unwrapped = iso (\(GenericAnnotation x) -> x) GenericAnnotation
+unwrapped = coerced
 
 deriving via
   (ByteStringViaCommand a)

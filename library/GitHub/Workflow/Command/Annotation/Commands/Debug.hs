@@ -3,7 +3,7 @@ module GitHub.Workflow.Command.Annotation.Commands.Debug
   , Debug (..)
   ) where
 
-import Control.Lens (coerced)
+import Control.Lens.TH
 import GitHub.Workflow.Command.Annotation.Commands.Generic
 import GitHub.Workflow.Command.Annotation.Properties
 import GitHub.Workflow.Command.Annotation.Properties qualified as Properties
@@ -19,13 +19,21 @@ import GitHub.Workflow.Command.Syntax qualified as Syntax
 newtype Debug = Debug
   { message :: Message
   }
-  deriving (ToCommand, ToByteString) via GenericAnnotation Debug
+
+makeLensesFor
+  [ ("message", "debugMessage")
+  ]
+  ''Debug
+
+deriving via GenericAnnotation Debug instance ToCommand Debug
+
+deriving via GenericAnnotation Debug instance ToByteString Debug
 
 instance IsAnnotationType Debug where
   annotationTypeName = "debug"
 
 instance HasMessage Debug where
-  message = coerced
+  message = debugMessage
 
 instance FromMessage Debug where
   fromMessage = debug

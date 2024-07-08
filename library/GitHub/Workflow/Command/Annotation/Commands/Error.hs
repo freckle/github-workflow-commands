@@ -4,7 +4,7 @@ module GitHub.Workflow.Command.Annotation.Commands.Error
   ) where
 
 import Control.Category
-import Control.Lens (lens)
+import Control.Lens.TH
 import GitHub.Workflow.Command.Annotation.Commands.Generic
 import GitHub.Workflow.Command.Annotation.Location
 import GitHub.Workflow.Command.Annotation.Properties
@@ -22,21 +22,25 @@ data Error = Error
   { message :: Message
   , properties :: Properties
   }
-  deriving (ToCommand, ToByteString) via GenericAnnotation Error
+
+makeLensesFor
+  [ ("message", "errorMessage")
+  , ("properties", "errorProperties")
+  ]
+  ''Error
+
+deriving via GenericAnnotation Error instance ToCommand Error
+
+deriving via GenericAnnotation Error instance ToByteString Error
 
 instance IsAnnotationType Error where
   annotationTypeName = "error"
 
 instance HasMessage Error where
-  message = lens
-    (.message)
-    \x y -> Error {properties = x.properties, message = y}
+  message = errorMessage
 
 instance HasProperties Error where
-  annotationProperties =
-    lens
-      (.properties)
-      \x y -> Error {message = x.message, properties = y}
+  annotationProperties = errorProperties
 
 instance HasLocationMaybe Error where
   location = annotationProperties . location

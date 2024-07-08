@@ -4,7 +4,7 @@ module GitHub.Workflow.Command.Annotation.Commands.Notice
   ) where
 
 import Control.Category
-import Control.Lens (lens)
+import Control.Lens.TH
 import GitHub.Workflow.Command.Annotation.Commands.Generic
 import GitHub.Workflow.Command.Annotation.Location
 import GitHub.Workflow.Command.Annotation.Properties
@@ -22,21 +22,25 @@ data Notice = Notice
   { message :: Message
   , properties :: Properties
   }
-  deriving (ToCommand, ToByteString) via GenericAnnotation Notice
+
+makeLensesFor
+  [ ("message", "noticeMessage")
+  , ("properties", "noticeProperties")
+  ]
+  ''Notice
+
+deriving via GenericAnnotation Notice instance ToCommand Notice
+
+deriving via GenericAnnotation Notice instance ToByteString Notice
 
 instance IsAnnotationType Notice where
   annotationTypeName = "notice"
 
 instance HasMessage Notice where
-  message = lens
-    (.message)
-    \x y -> Notice {properties = x.properties, message = y}
+  message = noticeMessage
 
 instance HasProperties Notice where
-  annotationProperties =
-    lens
-      (.properties)
-      \x y -> Notice {message = x.message, properties = y}
+  annotationProperties = noticeProperties
 
 instance HasLocationMaybe Notice where
   location = annotationProperties . location

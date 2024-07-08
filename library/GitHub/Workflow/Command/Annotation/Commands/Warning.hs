@@ -4,7 +4,7 @@ module GitHub.Workflow.Command.Annotation.Commands.Warning
   ) where
 
 import Control.Category
-import Control.Lens (lens)
+import Control.Lens.TH
 import GitHub.Workflow.Command.Annotation.Commands.Generic
 import GitHub.Workflow.Command.Annotation.Location
 import GitHub.Workflow.Command.Annotation.Properties
@@ -22,21 +22,25 @@ data Warning = Warning
   { message :: Message
   , properties :: Properties
   }
-  deriving (ToCommand, ToByteString) via GenericAnnotation Warning
+
+makeLensesFor
+  [ ("message", "warningMessage")
+  , ("properties", "warningProperties")
+  ]
+  ''Warning
+
+deriving via GenericAnnotation Warning instance ToCommand Warning
+
+deriving via GenericAnnotation Warning instance ToByteString Warning
 
 instance IsAnnotationType Warning where
   annotationTypeName = "warning"
 
 instance HasMessage Warning where
-  message = lens
-    (.message)
-    \x y -> Warning {properties = x.properties, message = y}
+  message = warningMessage
 
 instance HasProperties Warning where
-  annotationProperties =
-    lens
-      (.properties)
-      \x y -> Warning {message = x.message, properties = y}
+  annotationProperties = warningProperties
 
 instance HasLocationMaybe Warning where
   location = annotationProperties . location
