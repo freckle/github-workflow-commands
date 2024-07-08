@@ -1,11 +1,11 @@
-module GitHub.Workflow.Command.Annotation.Warning
+module GitHub.Workflow.Command.Annotation.Commands.Warning
   ( warning
   , Warning (..)
   ) where
 
 import Control.Category
 import Control.Lens (lens)
-import GitHub.Workflow.Command.Annotation.GenericAnnotation
+import GitHub.Workflow.Command.Annotation.Commands.Generic
 import GitHub.Workflow.Command.Annotation.Location
 import GitHub.Workflow.Command.Annotation.Properties
 import GitHub.Workflow.Command.Annotation.Properties qualified as Properties

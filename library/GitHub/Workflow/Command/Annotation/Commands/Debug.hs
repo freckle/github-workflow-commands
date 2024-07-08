@@ -1,10 +1,10 @@
-module GitHub.Workflow.Command.Annotation.Debug
+module GitHub.Workflow.Command.Annotation.Commands.Debug
   ( debug
   , Debug (..)
   ) where
 
 import Control.Lens (coerced)
-import GitHub.Workflow.Command.Annotation.GenericAnnotation
+import GitHub.Workflow.Command.Annotation.Commands.Generic
 import GitHub.Workflow.Command.Annotation.Properties
 import GitHub.Workflow.Command.Annotation.Properties qualified as Properties
 import GitHub.Workflow.Command.Syntax

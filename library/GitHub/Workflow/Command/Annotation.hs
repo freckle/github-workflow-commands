@@ -66,15 +66,15 @@ module GitHub.Workflow.Command.Annotation
   ) where
 
 import GitHub.Workflow.Command.Annotation.Column
-import GitHub.Workflow.Command.Annotation.Debug
-import GitHub.Workflow.Command.Annotation.Error
+import GitHub.Workflow.Command.Annotation.Commands.Debug
+import GitHub.Workflow.Command.Annotation.Commands.Error
+import GitHub.Workflow.Command.Annotation.Commands.Notice
+import GitHub.Workflow.Command.Annotation.Commands.Warning
 import GitHub.Workflow.Command.Annotation.File
 import GitHub.Workflow.Command.Annotation.Line
 import GitHub.Workflow.Command.Annotation.Location
-import GitHub.Workflow.Command.Annotation.Notice
 import GitHub.Workflow.Command.Annotation.Position
 import GitHub.Workflow.Command.Annotation.Properties
-import GitHub.Workflow.Command.Annotation.Warning
 import GitHub.Workflow.Command.Isomorphism.Natural
 import GitHub.Workflow.Command.Isomorphism.Text
 import GitHub.Workflow.Command.Syntax

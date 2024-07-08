@@ -1,4 +1,4 @@
-module GitHub.Workflow.Command.Annotation.GenericAnnotation
+module GitHub.Workflow.Command.Annotation.Commands.Generic
   ( GenericAnnotation (..)
   , IsAnnotationType (..)
   ) where
