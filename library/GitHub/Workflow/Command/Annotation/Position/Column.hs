@@ -1,13 +1,10 @@
 module GitHub.Workflow.Command.Annotation.Position.Column
   ( Column (..)
-  , HasColumn (..)
-  , SetColumn (..)
   , columnText
   , columnValue
   ) where
 
 import Control.Category
-import Control.Lens (Lens', simple)
 import Data.Text (Text)
 import Data.Text.Lazy qualified as TL
 import Data.Text.Lazy.Builder qualified as TB
@@ -18,18 +15,6 @@ import Prelude (Eq, Num, Ord, Show)
 
 newtype Column = Column {natural :: Natural}
   deriving newtype (Eq, Ord, Show, Num)
-
-class HasColumn a where
-  column :: Lens' a Column
-
-instance HasColumn Column where
-  column = simple
-
-class SetColumn a where
-  setColumn :: Column -> a -> a
-
-instance SetColumn Column where
-  setColumn x _ = x
 
 columnText :: Column -> Text
 columnText = TL.toStrict . TB.toLazyText . TL.decimal . (.natural)

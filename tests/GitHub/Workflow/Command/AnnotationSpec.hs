@@ -32,6 +32,15 @@ spec =
           )
           `shouldBe` "::error file=app.js,line=1::Missing semicolon"
 
+    context "with column" do
+      specify "" $
+        toByteString
+          ( error "Missing semicolon"
+              & location
+                ?~ (inFile "app.js" & position ?~ (atLine 7 & extent ?~ WithinLine (atColumn 64)))
+          )
+          `shouldBe` "::error col=64,file=app.js,line=7::Missing semicolon"
+
     context "with column range" do
       specify "" $
         toByteString

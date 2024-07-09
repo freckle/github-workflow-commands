@@ -50,7 +50,6 @@ module GitHub.Workflow.Command.Annotation
     -- ** Column
   , atColumn
   , Column (..)
-  , SetColumn (..)
 
     -- * Output
   , ToCommand (..)
