@@ -45,7 +45,7 @@ module GitHub.Workflow.Command.Annotation
 
     -- * Line
   , Line (..)
-  , FromLine (..)
+  , atLine
 
     -- ** Column
   , atColumn

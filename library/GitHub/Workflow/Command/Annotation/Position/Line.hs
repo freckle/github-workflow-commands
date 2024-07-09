@@ -1,6 +1,5 @@
 module GitHub.Workflow.Command.Annotation.Position.Line
   ( Line (..)
-  , FromLine (..)
   , lineText
   , lineValue
   ) where
@@ -16,12 +15,6 @@ import Prelude (Eq, Num, Ord, Show)
 
 newtype Line = Line {natural :: Natural}
   deriving newtype (Eq, Ord, Show, Num)
-
-class FromLine a where
-  atLine :: Line -> a
-
-instance FromLine Line where
-  atLine = id
 
 lineText :: Line -> Text
 lineText = TL.toStrict . TB.toLazyText . TL.decimal . (.natural)

@@ -2,6 +2,7 @@ module GitHub.Workflow.Command.Annotation.Position
   ( Position (..)
   , line
   , extent
+  , atLine
   ) where
 
 import Control.Category
@@ -29,5 +30,5 @@ instance AddToProperties Position where
     (property "line" ?~ lineValue x.line)
       . maybe id addToProperties x.extent
 
-instance FromLine Position where
-  atLine x = Position {line = x, extent = Nothing}
+atLine :: Line -> Position
+atLine x = Position {line = x, extent = Nothing}
