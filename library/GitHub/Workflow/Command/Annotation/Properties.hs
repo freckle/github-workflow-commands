@@ -6,7 +6,8 @@ module GitHub.Workflow.Command.Annotation.Properties
   ) where
 
 import Control.Category
-import Control.Lens (Lens', lens, simple, (?~))
+import Control.Lens (Lens', simple, (?~))
+import Control.Lens.TH
 import Data.Maybe (Maybe (..), maybe)
 import Data.Text (Text)
 import GitHub.Workflow.Command.Annotation.Location
@@ -19,18 +20,18 @@ data Properties = Properties
   , location :: Maybe Location
   }
 
+makeLensesFor
+  [ ("location", "propertiesLocation")
+  ]
+  ''Properties
+
 instance HasLocationMaybe Properties where
-  location = lens
-    (.location)
-    \x y -> Properties {title = x.title, location = y}
+  location = propertiesLocation
 
 instance Syntax.AddToProperties Properties where
   addToProperties x =
-    maybe id setTitle x.title
+    maybe id (\t -> Syntax.property "title" ?~ Value t) x.title
       . maybe id Syntax.addToProperties x.location
-
-setTitle :: Text -> Syntax.Properties -> Syntax.Properties
-setTitle x = Syntax.property "title" ?~ Value x
 
 class HasProperties a where
   annotationProperties :: Lens' a Properties

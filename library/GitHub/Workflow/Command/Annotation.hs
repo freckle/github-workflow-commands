@@ -37,19 +37,15 @@ module GitHub.Workflow.Command.Annotation
   , Position (..)
   , position
   , Extent (..)
+  , extent
   , Columns (..)
   , line
-  , extent
   , startColumn
   , endColumn
-
-    -- * Line
   , Line (..)
   , atLine
-
-    -- ** Column
-  , atColumn
   , Column (..)
+  , atColumn
 
     -- * Output
   , ToCommand (..)
