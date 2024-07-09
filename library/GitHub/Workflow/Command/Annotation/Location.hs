@@ -7,17 +7,13 @@ module GitHub.Workflow.Command.Annotation.Location
   ) where
 
 import Control.Category
-import Control.Lens (Lens', re, simple, (?~), (^.))
+import Control.Lens (Lens', simple, (?~))
 import Control.Lens.TH
 import Data.Maybe (Maybe (..), maybe)
 import Data.String (IsString (..))
 import GitHub.Workflow.Command.Annotation.File
 import GitHub.Workflow.Command.Annotation.Position
-import GitHub.Workflow.Command.Syntax
-  ( AddToProperties (..)
-  , property
-  , text
-  )
+import GitHub.Workflow.Command.Syntax (AddToProperties (..), property)
 
 data Location = Location
   { file :: File
@@ -36,7 +32,7 @@ instance IsString Location where
 
 instance AddToProperties Location where
   addToProperties x =
-    (property "file" ?~ (x.file ^. (text . re text)))
+    (property "file" ?~ fileValue x.file)
       . maybe id addToProperties x.position
 
 inFile :: File -> Location

@@ -43,8 +43,6 @@ library
       GitHub.Workflow.Command.Annotation.Position.Extent
       GitHub.Workflow.Command.Annotation.Position.Line
       GitHub.Workflow.Command.Annotation.Properties
-      GitHub.Workflow.Command.Isomorphism.Natural
-      GitHub.Workflow.Command.Isomorphism.Text
       GitHub.Workflow.Command.Syntax
       GitHub.Workflow.Command.Syntax.Command
       GitHub.Workflow.Command.Syntax.Key

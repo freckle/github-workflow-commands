@@ -1,14 +1,12 @@
 module GitHub.Workflow.Command.Syntax.Value
-  ( Value
+  ( Value (..)
   ) where
 
 import Control.Category
-import Control.Lens (iso)
 import Data.String (IsString)
 import Data.Text (Text)
 import Data.Text qualified as T
 import Data.Text.Encoding qualified as T
-import GitHub.Workflow.Command.Isomorphism.Text
 import GitHub.Workflow.Command.Syntax.ToByteString
 import Prelude (Eq, Ord, Show)
 
@@ -28,6 +26,3 @@ instance ToByteString Value where
             x -> T.singleton x
         )
       . (.text)
-
-instance TextIso Value where
-  text = iso (.text) Value

@@ -1,15 +1,16 @@
 module GitHub.Workflow.Command.Annotation.File
-  ( File
+  ( File (..)
+  , fileValue
   ) where
 
-import Control.Lens (iso)
+import Control.Category
 import Data.String (IsString)
 import Data.Text (Text)
-import GitHub.Workflow.Command.Isomorphism.Text
+import GitHub.Workflow.Command.Syntax (Value (..))
 import Prelude (Eq, Ord, Show)
 
 newtype File = File {text :: Text}
   deriving newtype (Eq, Ord, Show, IsString)
 
-instance TextIso File where
-  text = iso (.text) File
+fileValue :: File -> Value
+fileValue = Value . (.text)

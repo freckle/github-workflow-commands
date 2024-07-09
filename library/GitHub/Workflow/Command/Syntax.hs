@@ -6,31 +6,27 @@ module GitHub.Workflow.Command.Syntax
   , toCommand
 
     -- * Name
-  , Name
+  , Name (..)
   , HasName (..)
 
     -- * Message
-  , Message
+  , Message (..)
   , HasMessage (..)
   , FromMessage (..)
 
     -- * Properties
   , Properties
-  , Key
-  , Value
+  , Key (..)
+  , Value (..)
   , property
   , HasProperties (..)
   , AddToProperties (..)
-
-    -- * Text
-  , TextIso (..)
 
     -- * Output
   , ToByteString (..)
   , ByteStringViaCommand (..)
   ) where
 
-import GitHub.Workflow.Command.Isomorphism.Text
 import GitHub.Workflow.Command.Syntax.Command
 import GitHub.Workflow.Command.Syntax.Key
 import GitHub.Workflow.Command.Syntax.Message

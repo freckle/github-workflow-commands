@@ -1,5 +1,5 @@
 module GitHub.Workflow.Command.Annotation.Position.Column
-  ( Column
+  ( Column (..)
   , HasColumn (..)
   , SetColumn (..)
   , columnText
@@ -7,22 +7,17 @@ module GitHub.Workflow.Command.Annotation.Position.Column
   ) where
 
 import Control.Category
-import Control.Lens (Lens', iso, re, simple, (^.))
+import Control.Lens (Lens', simple)
 import Data.Text (Text)
 import Data.Text.Lazy qualified as TL
 import Data.Text.Lazy.Builder qualified as TB
 import Data.Text.Lazy.Builder.Int qualified as TL
-import GitHub.Workflow.Command.Isomorphism.Natural
-import GitHub.Workflow.Command.Isomorphism.Text
-import GitHub.Workflow.Command.Syntax (Value)
+import GitHub.Workflow.Command.Syntax (Value (..))
 import Numeric.Natural
 import Prelude (Eq, Num, Ord, Show)
 
 newtype Column = Column {natural :: Natural}
   deriving newtype (Eq, Ord, Show, Num)
-
-instance NaturalIso Column where
-  natural = iso (.natural) Column
 
 class HasColumn a where
   column :: Lens' a Column
@@ -37,7 +32,7 @@ instance SetColumn Column where
   setColumn x _ = x
 
 columnText :: Column -> Text
-columnText = TL.toStrict . TB.toLazyText . TL.decimal . (^. natural)
+columnText = TL.toStrict . TB.toLazyText . TL.decimal . (.natural)
 
 columnValue :: Column -> Value
-columnValue = (^. re text) . columnText
+columnValue = Value . columnText

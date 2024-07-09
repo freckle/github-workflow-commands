@@ -18,7 +18,7 @@ module GitHub.Workflow.Command.Annotation
   , Notice (..)
 
     -- * Message
-  , Message
+  , Message (..)
   , FromMessage (..)
 
     -- * Properties
@@ -29,7 +29,7 @@ module GitHub.Workflow.Command.Annotation
   , HasLocationMaybe (..)
 
     -- ** File
-  , File
+  , File (..)
   , inFile
   , file
 
@@ -44,19 +44,13 @@ module GitHub.Workflow.Command.Annotation
   , endColumn
 
     -- * Line
-  , Line
+  , Line (..)
   , FromLine (..)
 
     -- ** Column
   , atColumn
-  , Column
+  , Column (..)
   , SetColumn (..)
-
-    -- * Text
-  , TextIso (..)
-
-    -- * Natural
-  , NaturalIso (..)
 
     -- * Output
   , ToCommand (..)
@@ -76,11 +70,9 @@ import GitHub.Workflow.Command.Annotation.Position.Columns
 import GitHub.Workflow.Command.Annotation.Position.Extent
 import GitHub.Workflow.Command.Annotation.Position.Line
 import GitHub.Workflow.Command.Annotation.Properties
-import GitHub.Workflow.Command.Isomorphism.Natural
-import GitHub.Workflow.Command.Isomorphism.Text
 import GitHub.Workflow.Command.Syntax
   ( FromMessage (..)
-  , Message
+  , Message (..)
   , ToByteString (..)
   , ToCommand (..)
   , toCommand

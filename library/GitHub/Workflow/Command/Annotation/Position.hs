@@ -5,12 +5,11 @@ module GitHub.Workflow.Command.Annotation.Position
   ) where
 
 import Control.Category
-import Control.Lens (re, (?~), (^.))
+import Control.Lens ((?~))
 import Control.Lens.TH
 import Data.Maybe (Maybe (..), maybe)
 import GitHub.Workflow.Command.Annotation.Position.Extent
 import GitHub.Workflow.Command.Annotation.Position.Line
-import GitHub.Workflow.Command.Isomorphism.Text
 import GitHub.Workflow.Command.Syntax (AddToProperties (..), property)
 
 -- | Where an annotation is marked within a file
@@ -27,7 +26,7 @@ makeLensesFor
 
 instance AddToProperties Position where
   addToProperties x =
-    ((property "line" ?~) . (^. re text) . lineText) x.line
+    (property "line" ?~ lineValue x.line)
       . maybe id addToProperties x.extent
 
 instance FromLine Position where
