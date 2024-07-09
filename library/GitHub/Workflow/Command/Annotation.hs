@@ -31,12 +31,11 @@ module GitHub.Workflow.Command.Annotation
     -- ** File
   , File
   , FromFile (..)
-  , HasFile (..)
+  , file
 
     -- ** Position
   , Position (..)
-  , HasPositionMaybe (..)
-  , SetPosition (..)
+  , position
   , Extent (..)
   , Columns (..)
   , line
