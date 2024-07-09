@@ -73,6 +73,7 @@ import GitHub.Workflow.Command.Annotation.File
 import GitHub.Workflow.Command.Annotation.Location
 import GitHub.Workflow.Command.Annotation.Position
 import GitHub.Workflow.Command.Annotation.Position.Column
+import GitHub.Workflow.Command.Annotation.Position.Columns
 import GitHub.Workflow.Command.Annotation.Position.Line
 import GitHub.Workflow.Command.Annotation.Properties
 import GitHub.Workflow.Command.Isomorphism.Natural

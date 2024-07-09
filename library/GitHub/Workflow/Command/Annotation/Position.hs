@@ -2,18 +2,15 @@ module GitHub.Workflow.Command.Annotation.Position
   ( Position (..)
   , Extent (..)
   , HasExtentMaybe (..)
-  , Columns (..)
   , HasPositionMaybe (..)
   , SetPosition (..)
-  , startColumn
-  , endColumn
   ) where
 
 import Control.Category
 import Control.Lens (Lens', lens, re, simple, (?~), (^.))
-import Control.Lens.TH
 import Data.Maybe (Maybe (..), maybe)
 import GitHub.Workflow.Command.Annotation.Position.Column
+import GitHub.Workflow.Command.Annotation.Position.Columns
 import GitHub.Workflow.Command.Annotation.Position.Line
 import GitHub.Workflow.Command.Isomorphism.Text
 import GitHub.Workflow.Command.Syntax (AddToProperties (..), property)
@@ -24,17 +21,10 @@ data Position = Position
   , extent :: Maybe Extent
   }
 
+-- | Extra positional data, as a modification to the start 'Line'
 data Extent
   = Horizontal Columns
   | EndLine Line
-
-data Columns = Columns
-  { start :: Column
-  , end :: Maybe Column
-  }
-
-makeLensesFor [("start", "startColumn")] ''Columns
-makeLensesFor [("end", "endColumn")] ''Columns
 
 instance AddToProperties Position where
   addToProperties x =
@@ -45,11 +35,6 @@ instance AddToProperties Extent where
   addToProperties = \case
     Horizontal x -> addToProperties x
     EndLine x -> property "endLine" ?~ lineValue x
-
-instance AddToProperties Columns where
-  addToProperties x =
-    (property "col" ?~ columnValue x.start)
-      . maybe id (\y -> property "endColumn" ?~ columnValue y) x.end
 
 class HasExtentMaybe a where
   extent :: Lens' a (Maybe Extent)
@@ -74,9 +59,6 @@ instance SetPosition Position where
 
 instance FromLine Position where
   atLine x = Position {line = x, extent = Nothing}
-
-instance FromColumn Columns where
-  atColumn x = Columns {start = x, end = Nothing}
 
 instance FromColumn Extent where
   atColumn = Horizontal . atColumn

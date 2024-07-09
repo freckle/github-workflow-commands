@@ -39,6 +39,7 @@ library
       GitHub.Workflow.Command.Annotation.Location
       GitHub.Workflow.Command.Annotation.Position
       GitHub.Workflow.Command.Annotation.Position.Column
+      GitHub.Workflow.Command.Annotation.Position.Columns
       GitHub.Workflow.Command.Annotation.Position.Line
       GitHub.Workflow.Command.Annotation.Properties
       GitHub.Workflow.Command.Isomorphism.Natural
