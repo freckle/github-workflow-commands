@@ -43,6 +43,7 @@ dependencies:
 language: GHC2021
 
 default-extensions:
+  - AllowAmbiguousTypes
   - BlockArguments
   - DataKinds
   - DeriveAnyClass
@@ -58,6 +59,7 @@ default-extensions:
   - OverloadedRecordDot
   - OverloadedStrings
   - QuasiQuotes
+  - TemplateHaskell
   - TypeFamilies
 
 library:

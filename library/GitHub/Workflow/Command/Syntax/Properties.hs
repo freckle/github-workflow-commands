@@ -1,6 +1,7 @@
 module GitHub.Workflow.Command.Syntax.Properties
   ( Properties
   , HasProperties (..)
+  , AddToProperties (..)
   , property
   , empty
   , null
@@ -16,7 +17,7 @@ import Data.Map.Strict qualified as Map
 import Data.Maybe (Maybe (..))
 import Data.Semigroup
 import GitHub.Workflow.Command.Syntax.Key (Key)
-import GitHub.Workflow.Command.Syntax.ToByteStringBuilder
+import GitHub.Workflow.Command.Syntax.ToByteString
 import GitHub.Workflow.Command.Syntax.Value (Value)
 import Prelude (Bool, Eq, Ord, Show)
 
@@ -29,7 +30,7 @@ empty = Properties Map.empty
 null :: Properties -> Bool
 null = Map.null . (.map)
 
-instance ToByteStringBuilder Properties where
+instance ToByteString Properties where
   toByteStringBuilder =
     fold
       . List.intersperse ","
@@ -50,3 +51,6 @@ instance HasProperties Properties where
 
 property :: HasProperties a => Key -> Lens' a (Maybe Value)
 property k = properties . iso (.map) Properties . at k
+
+class AddToProperties a where
+  addToProperties :: a -> Properties -> Properties

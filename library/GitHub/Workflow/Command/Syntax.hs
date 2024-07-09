@@ -1,23 +1,30 @@
 module GitHub.Workflow.Command.Syntax
-  ( -- * Types
+  ( -- * Command
     Command
-  , Name
-  , Properties
-  , Key
-  , Value
-  , Message
-
-    -- * Working with commands
   , command
-  , property
-  , TextIso (..)
-  , HasMessage (..)
-  , HasProperties (..)
+  , ToCommand (..)
+  , toCommand
 
-    -- * Printing commands
-  , ToByteStringBuilder
-  , toByteString
-  , toByteStringBuilder
+    -- * Name
+  , Name (..)
+  , HasName (..)
+
+    -- * Message
+  , Message (..)
+  , HasMessage (..)
+  , FromMessage (..)
+
+    -- * Properties
+  , Properties
+  , Key (..)
+  , Value (..)
+  , property
+  , HasProperties (..)
+  , AddToProperties (..)
+
+    -- * Output
+  , ToByteString (..)
+  , ByteStringViaCommand (..)
   ) where
 
 import GitHub.Workflow.Command.Syntax.Command
@@ -25,6 +32,5 @@ import GitHub.Workflow.Command.Syntax.Key
 import GitHub.Workflow.Command.Syntax.Message
 import GitHub.Workflow.Command.Syntax.Name
 import GitHub.Workflow.Command.Syntax.Properties
-import GitHub.Workflow.Command.Syntax.TextIso
-import GitHub.Workflow.Command.Syntax.ToByteStringBuilder
+import GitHub.Workflow.Command.Syntax.ToByteString
 import GitHub.Workflow.Command.Syntax.Value

@@ -1,6 +1,9 @@
 module GitHub.Workflow.Command.Syntax.Command
   ( Command
   , command
+  , ToCommand (..)
+  , toCommand
+  , ByteStringViaCommand (..)
   ) where
 
 import Control.Category
@@ -13,7 +16,7 @@ import GitHub.Workflow.Command.Syntax.Message
 import GitHub.Workflow.Command.Syntax.Name
 import GitHub.Workflow.Command.Syntax.Properties
 import GitHub.Workflow.Command.Syntax.Properties qualified as Properties
-import GitHub.Workflow.Command.Syntax.ToByteStringBuilder
+import GitHub.Workflow.Command.Syntax.ToByteString
 import Prelude (Eq, Maybe (..), Ord, Show, not, (<>))
 
 data Command = Command
@@ -26,11 +29,20 @@ data Command = Command
 instance IsString Command where
   fromString = command . fromString
 
+instance HasName Command where
+  name = lens
+    (.name)
+    \x y -> x {name = y}
+
 instance HasMessage Command where
-  message = lens (.message) \x y -> x {message = y}
+  message = lens
+    (.message)
+    \x y -> x {message = y}
 
 instance HasProperties Command where
-  properties = lens (.properties) \x y -> x {properties = y}
+  properties = lens
+    (.properties)
+    \x y -> x {properties = y}
 
 -- | Construct a minimal command with a command 'Name' e.g. "warning" or "error"
 --
@@ -45,7 +57,7 @@ command x =
     , message = ""
     }
 
-instance ToByteStringBuilder Command where
+instance ToByteString Command where
   toByteStringBuilder x =
     "::"
       <> toByteStringBuilder x.name
@@ -54,3 +66,14 @@ instance ToByteStringBuilder Command where
         (mfilter (not . Properties.null) (Just x.properties))
       <> "::"
       <> toByteStringBuilder x.message
+
+class ToCommand a where
+  addToCommand :: a -> Command -> Command
+
+toCommand :: ToCommand a => a -> Command
+toCommand x = addToCommand x (command "")
+
+newtype ByteStringViaCommand a = ByteStringViaCommand a
+
+instance ToCommand a => ToByteString (ByteStringViaCommand a) where
+  toByteStringBuilder = toByteStringBuilder . toCommand . (\(ByteStringViaCommand x) -> x)
