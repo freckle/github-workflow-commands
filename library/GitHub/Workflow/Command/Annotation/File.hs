@@ -1,9 +1,7 @@
 module GitHub.Workflow.Command.Annotation.File
   ( File
-  , FromFile (..)
   ) where
 
-import Control.Category
 import Control.Lens (iso)
 import Data.String (IsString)
 import Data.Text (Text)
@@ -15,9 +13,3 @@ newtype File = File {text :: Text}
 
 instance TextIso File where
   text = iso (.text) File
-
-class FromFile a where
-  fromFile :: File -> a
-
-instance FromFile File where
-  fromFile = id

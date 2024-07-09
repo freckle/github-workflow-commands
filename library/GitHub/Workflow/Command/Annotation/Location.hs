@@ -3,6 +3,7 @@ module GitHub.Workflow.Command.Annotation.Location
   , HasLocationMaybe (..)
   , file
   , position
+  , inFile
   ) where
 
 import Control.Category
@@ -31,15 +32,15 @@ makeLensesFor
   ''Location
 
 instance IsString Location where
-  fromString = fromFile . fromString
+  fromString = inFile . fromString
 
 instance AddToProperties Location where
   addToProperties x =
     (property "file" ?~ (x.file ^. (text . re text)))
       . maybe id addToProperties x.position
 
-instance FromFile Location where
-  fromFile x = Location {file = x, position = Nothing}
+inFile :: File -> Location
+inFile x = Location {file = x, position = Nothing}
 
 class HasLocationMaybe a where
   location :: Lens' a (Maybe Location)

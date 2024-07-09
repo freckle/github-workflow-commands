@@ -30,7 +30,7 @@ module GitHub.Workflow.Command.Annotation
 
     -- ** File
   , File
-  , FromFile (..)
+  , inFile
   , file
 
     -- ** Position

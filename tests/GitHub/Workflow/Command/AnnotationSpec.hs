@@ -28,7 +28,7 @@ spec =
       specify "" $
         toByteString
           ( error "Missing semicolon"
-              & location ?~ ("app.js" & position ?~ atLine 1)
+              & location ?~ (inFile "app.js" & position ?~ atLine 1)
           )
           `shouldBe` "::error file=app.js,line=1::Missing semicolon"
 
@@ -37,7 +37,7 @@ spec =
         toByteString
           ( notice "Missing semicolon"
               & location
-                ?~ ( "app.js"
+                ?~ ( inFile "app.js"
                       & position ?~ (atLine 1 & extent ?~ WithinLine (atColumn 5 & endColumn ?~ 7))
                    )
           )
@@ -48,7 +48,7 @@ spec =
           ( warning
               "Missing semicolon"
               & location
-                ?~ ( "app.js"
+                ?~ ( inFile "app.js"
                       & position ?~ (atLine 1 & extent ?~ WithinLine (atColumn 15 & endColumn ?~ 32))
                    )
           )
@@ -58,6 +58,6 @@ spec =
       it "" $
         toByteString
           ( warning "Missing semicolon"
-              & location ?~ ("app.js" & position ?~ (atLine 13 & extent ?~ ToLine 16))
+              & location ?~ (inFile "app.js" & position ?~ (atLine 13 & extent ?~ ToLine 16))
           )
           `shouldBe` "::warning ToLine=16,file=app.js,line=13::Missing semicolon"
