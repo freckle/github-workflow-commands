@@ -38,19 +38,19 @@ module GitHub.Workflow.Command.Annotation
   , HasPositionMaybe (..)
   , SetPosition (..)
   , Extent (..)
-  , HasExtentMaybe (..)
   , Columns (..)
+  , line
+  , extent
   , startColumn
   , endColumn
 
     -- * Line
   , Line
   , FromLine (..)
-  , SetLine (..)
 
     -- ** Column
+  , atColumn
   , Column
-  , FromColumn (..)
   , SetColumn (..)
 
     -- * Text
@@ -74,6 +74,7 @@ import GitHub.Workflow.Command.Annotation.Location
 import GitHub.Workflow.Command.Annotation.Position
 import GitHub.Workflow.Command.Annotation.Position.Column
 import GitHub.Workflow.Command.Annotation.Position.Columns
+import GitHub.Workflow.Command.Annotation.Position.Extent
 import GitHub.Workflow.Command.Annotation.Position.Line
 import GitHub.Workflow.Command.Annotation.Properties
 import GitHub.Workflow.Command.Isomorphism.Natural

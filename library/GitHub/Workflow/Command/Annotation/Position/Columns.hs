@@ -1,5 +1,6 @@
 module GitHub.Workflow.Command.Annotation.Position.Columns
   ( Columns (..)
+  , atColumn
   , startColumn
   , endColumn
   ) where
@@ -16,13 +17,16 @@ data Columns = Columns
   , end :: Maybe Column
   }
 
-makeLensesFor [("start", "startColumn")] ''Columns
-makeLensesFor [("end", "endColumn")] ''Columns
+makeLensesFor
+  [ ("start", "startColumn")
+  , ("end", "endColumn")
+  ]
+  ''Columns
 
 instance AddToProperties Columns where
   addToProperties x =
     (property "col" ?~ columnValue x.start)
       . maybe id (\y -> property "endColumn" ?~ columnValue y) x.end
 
-instance FromColumn Columns where
-  atColumn x = Columns {start = x, end = Nothing}
+atColumn :: Column -> Columns
+atColumn x = Columns {start = x, end = Nothing}

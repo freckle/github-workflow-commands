@@ -1,6 +1,5 @@
 module GitHub.Workflow.Command.Annotation.Position.Column
   ( Column
-  , FromColumn (..)
   , HasColumn (..)
   , SetColumn (..)
   , columnText
@@ -24,12 +23,6 @@ newtype Column = Column {natural :: Natural}
 
 instance NaturalIso Column where
   natural = iso (.natural) Column
-
-class FromColumn a where
-  atColumn :: Column -> a
-
-instance FromColumn Column where
-  atColumn = id
 
 class HasColumn a where
   column :: Lens' a Column

@@ -1,14 +1,12 @@
 module GitHub.Workflow.Command.Annotation.Position.Line
   ( Line
   , FromLine (..)
-  , HasLine (..)
-  , SetLine (..)
   , lineText
   , lineValue
   ) where
 
 import Control.Category
-import Control.Lens (Lens', iso, re, simple, (^.))
+import Control.Lens (iso, re, (^.))
 import Data.Text (Text)
 import Data.Text.Lazy qualified as TL
 import Data.Text.Lazy.Builder qualified as TB
@@ -30,18 +28,6 @@ class FromLine a where
 
 instance FromLine Line where
   atLine = id
-
-class HasLine a where
-  line :: Lens' a Line
-
-instance HasLine Line where
-  line = simple
-
-class SetLine a where
-  setLine :: Line -> a -> a
-
-instance SetLine Line where
-  setLine x _ = x
 
 lineText :: Line -> Text
 lineText = TL.toStrict . TB.toLazyText . TL.decimal . (^. natural)
