@@ -25,6 +25,7 @@ module GitHub.Workflow.Command.Syntax
     -- * Output
   , ToByteString (..)
   , ByteStringViaCommand (..)
+  , printByteStringLn
   ) where
 
 import GitHub.Workflow.Command.Syntax.Command

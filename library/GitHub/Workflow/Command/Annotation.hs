@@ -51,6 +51,7 @@ module GitHub.Workflow.Command.Annotation
   , ToCommand (..)
   , toCommand
   , ToByteString (..)
+  , printByteStringLn
   ) where
 
 import GitHub.Workflow.Command.Annotation.Commands.Debug
@@ -70,5 +71,6 @@ import GitHub.Workflow.Command.Syntax
   , Message (..)
   , ToByteString (..)
   , ToCommand (..)
+  , printByteStringLn
   , toCommand
   )
