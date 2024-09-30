@@ -1,7 +1,7 @@
 name: github-workflow-commands
 version: 0.0.0.0
 maintainer: Freckle Education
-category: Utils
+category: GitHub
 github: freckle/github-workflow-commands
 synopsis: GitHub Actions workflow commands
 description: |

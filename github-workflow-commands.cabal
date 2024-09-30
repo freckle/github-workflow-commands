@@ -10,7 +10,7 @@ synopsis:       GitHub Actions workflow commands
 description:    For printing workflow commands in GitHub Actions.
                 .
                 See https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
-category:       Utils
+category:       GitHub
 homepage:       https://github.com/freckle/github-workflow-commands#readme
 bug-reports:    https://github.com/freckle/github-workflow-commands/issues
 maintainer:     Freckle Education
