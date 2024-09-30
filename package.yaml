@@ -87,3 +87,10 @@ tests:
       - hspec
       - hspec-junit-formatter
       - lens
+  readme:
+    main: README.lhs
+    ghc-options: -pgmL markdown-unlit
+    dependencies:
+      - github-workflow-commands
+      - lens
+      - markdown-unlit
