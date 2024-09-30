@@ -1,2 +1,6 @@
-roots = ["Main.main", "^Paths_.*"]
+roots = [
+  "Main.main",
+  "^Paths_.*",
+  "GitHub.Workflow.Command.Syntax.ToByteString.printByteStringLn",
+]
 type-class-roots = true
