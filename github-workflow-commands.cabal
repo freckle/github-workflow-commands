@@ -100,10 +100,7 @@ test-suite readme
       DerivingStrategies
       DerivingVia
       DuplicateRecordFields
-      FlexibleInstances
       GADTs
-      GeneralizedNewtypeDeriving
-      ImportQualifiedPost
       LambdaCase
       NoFieldSelectors
       NoImplicitPrelude
@@ -112,11 +109,7 @@ test-suite readme
       OverloadedRecordDot
       OverloadedStrings
       QuasiQuotes
-      RankNTypes
-      ScopedTypeVariables
-      StandaloneDeriving
       TemplateHaskell
-      TypeApplications
       TypeFamilies
   ghc-options: -fwrite-ide-info -Weverything -Wno-all-missed-specialisations -Wno-missed-specialisations -Wno-missing-exported-signatures -Wno-missing-import-lists -Wno-missing-local-signatures -Wno-monomorphism-restriction -Wno-safe -Wno-unsafe -pgmL markdown-unlit
   build-depends:
@@ -124,7 +117,7 @@ test-suite readme
     , github-workflow-commands
     , lens
     , markdown-unlit
-  default-language: Haskell2010
+  default-language: GHC2021
   if impl(ghc >= 9.2)
     ghc-options: -Wno-missing-kind-signatures
   if impl(ghc >= 8.10)
