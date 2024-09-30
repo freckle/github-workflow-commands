@@ -1,7 +1,7 @@
 name: github-workflow-commands
 version: 0.0.0.0
 maintainer: Freckle Education
-category: Utils
+category: GitHub
 github: freckle/github-workflow-commands
 synopsis: GitHub Actions workflow commands
 description: |
@@ -29,6 +29,10 @@ ghc-options:
   - -Wno-unsafe
 
 when:
+  - condition: "impl(ghc >= 9.8)"
+    ghc-options:
+      - -Wno-missing-poly-kind-signatures
+      - -Wno-missing-role-annotations
   - condition: "impl(ghc >= 9.2)"
     ghc-options:
       - -Wno-missing-kind-signatures
@@ -80,3 +84,10 @@ tests:
       - hspec
       - hspec-junit-formatter
       - lens
+  readme:
+    main: README.lhs
+    ghc-options: -pgmL markdown-unlit
+    dependencies:
+      - github-workflow-commands
+      - lens
+      - markdown-unlit

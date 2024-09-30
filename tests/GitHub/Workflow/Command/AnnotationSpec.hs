@@ -69,4 +69,4 @@ spec =
           ( warning "Missing semicolon"
               & location ?~ (inFile "app.js" & position ?~ (atLine 13 & extent ?~ ToLine 16))
           )
-          `shouldBe` "::warning ToLine=16,file=app.js,line=13::Missing semicolon"
+          `shouldBe` "::warning endLine=16,file=app.js,line=13::Missing semicolon"

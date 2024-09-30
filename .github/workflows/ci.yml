@@ -33,7 +33,7 @@ jobs:
       - id: stack
         uses: freckle/stack-action@v5
         with:
-          stack-yaml: ${{ matrix.stack-yaml }}
+          stack-arguments: --stack-yaml ${{ matrix.stack-yaml }}
       - if: ${{ matrix.stack-yaml == 'stack.yaml' }}
         uses: freckle/weeder-action@v2
         with:
@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: haskell/actions/hlint-setup@v2
-      - uses: haskell/actions/hlint-run@v2
+      - uses: haskell-actions/hlint-setup@v2
+      - uses: haskell-actions/hlint-run@v2
         with:
           fail-on: warning
