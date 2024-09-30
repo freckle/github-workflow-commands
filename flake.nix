@@ -21,7 +21,7 @@
           fourmolu = freckle.fourmolu-0-13-x;
 
           ghc = freckleLib.haskellBundle {
-            ghcVersion = "ghc-9-6-5";
+            ghcVersion = "ghc-9-6-6";
             enableHLS = true;
           };
         };
