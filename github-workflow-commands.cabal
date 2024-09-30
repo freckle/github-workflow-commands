@@ -63,10 +63,7 @@ library
       DerivingStrategies
       DerivingVia
       DuplicateRecordFields
-      FlexibleInstances
       GADTs
-      GeneralizedNewtypeDeriving
-      ImportQualifiedPost
       LambdaCase
       NoFieldSelectors
       NoImplicitPrelude
@@ -75,11 +72,7 @@ library
       OverloadedRecordDot
       OverloadedStrings
       QuasiQuotes
-      RankNTypes
-      ScopedTypeVariables
-      StandaloneDeriving
       TemplateHaskell
-      TypeApplications
       TypeFamilies
   ghc-options: -fwrite-ide-info -Weverything -Wno-all-missed-specialisations -Wno-missed-specialisations -Wno-missing-exported-signatures -Wno-missing-import-lists -Wno-missing-local-signatures -Wno-monomorphism-restriction -Wno-safe -Wno-unsafe
   build-depends:
@@ -88,7 +81,7 @@ library
     , containers
     , lens
     , text
-  default-language: Haskell2010
+  default-language: GHC2021
   if impl(ghc >= 9.2)
     ghc-options: -Wno-missing-kind-signatures
   if impl(ghc >= 8.10)
@@ -155,10 +148,7 @@ test-suite spec
       DerivingStrategies
       DerivingVia
       DuplicateRecordFields
-      FlexibleInstances
       GADTs
-      GeneralizedNewtypeDeriving
-      ImportQualifiedPost
       LambdaCase
       NoFieldSelectors
       NoImplicitPrelude
@@ -167,11 +157,7 @@ test-suite spec
       OverloadedRecordDot
       OverloadedStrings
       QuasiQuotes
-      RankNTypes
-      ScopedTypeVariables
-      StandaloneDeriving
       TemplateHaskell
-      TypeApplications
       TypeFamilies
   ghc-options: -fwrite-ide-info -Weverything -Wno-all-missed-specialisations -Wno-missed-specialisations -Wno-missing-exported-signatures -Wno-missing-import-lists -Wno-missing-local-signatures -Wno-monomorphism-restriction -Wno-safe -Wno-unsafe -threaded -rtsopts "-with-rtsopts=-N"
   build-depends:
@@ -180,7 +166,7 @@ test-suite spec
     , hspec
     , hspec-junit-formatter
     , lens
-  default-language: Haskell2010
+  default-language: GHC2021
   if impl(ghc >= 9.2)
     ghc-options: -Wno-missing-kind-signatures
   if impl(ghc >= 8.10)
