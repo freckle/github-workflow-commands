@@ -15,4 +15,4 @@ data Extent
 instance AddToProperties Extent where
   addToProperties = \case
     WithinLine x -> addToProperties x
-    ToLine x -> property "ToLine" ?~ lineValue x
+    ToLine x -> property "endLine" ?~ lineValue x
