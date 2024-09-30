@@ -32,6 +32,13 @@ packages:
       size: 741
   original:
     hackage: hspec-expectations-0.8.4
+- completed:
+    hackage: hspec-junit-formatter-1.1.2.1@sha256:d45e8a6389339dc9e0213387e875a7e52545b1895632b20280942f383715542b,5842
+    pantry-tree:
+      sha256: 4bbe193b2ece70aba1f435e72fa56ea7b30f0517b7405d6798adb4a27fe69c76
+      size: 1491
+  original:
+    hackage: hspec-junit-formatter-1.1.2.1
 snapshots:
 - completed:
     sha256: 5a59b2a405b3aba3c00188453be172b85893cab8ebc352b1ef58b0eae5d248a2
