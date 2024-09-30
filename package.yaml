@@ -40,7 +40,7 @@ when:
 dependencies:
   - base < 5
 
-language: GHC2021
+language: Haskell2010
 
 default-extensions:
   - AllowAmbiguousTypes
@@ -50,7 +50,10 @@ default-extensions:
   - DerivingStrategies
   - DerivingVia
   - DuplicateRecordFields
+  - FlexibleInstances
   - GADTs
+  - GeneralizedNewtypeDeriving
+  - ImportQualifiedPost
   - LambdaCase
   - NoFieldSelectors
   - NoImplicitPrelude
@@ -59,7 +62,11 @@ default-extensions:
   - OverloadedRecordDot
   - OverloadedStrings
   - QuasiQuotes
+  - RankNTypes
+  - ScopedTypeVariables
+  - StandaloneDeriving
   - TemplateHaskell
+  - TypeApplications
   - TypeFamilies
 
 library:
