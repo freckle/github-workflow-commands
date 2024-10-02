@@ -48,6 +48,7 @@ module GitHub.Workflow.Command.Annotation
   , atColumn
 
     -- * Output
+  , MonadCommand (..)
   , ToCommand (..)
   , toCommand
   , ToByteString (..)
@@ -66,6 +67,7 @@ import GitHub.Workflow.Command.Annotation.Position.Columns
 import GitHub.Workflow.Command.Annotation.Position.Extent
 import GitHub.Workflow.Command.Annotation.Position.Line
 import GitHub.Workflow.Command.Annotation.Properties
+import GitHub.Workflow.Command.Execution
 import GitHub.Workflow.Command.Syntax
   ( FromMessage (..)
   , Message (..)

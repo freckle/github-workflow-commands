@@ -15,6 +15,7 @@ module Main (main) where
 import Prelude
 
 import Text.Markdown.Unlit ()
+import GitHub.Workflow.Command.Stopping (stopCommands)
 ```
 -->
 
@@ -28,7 +29,7 @@ An annotation is at minimum just a string.
 ```haskell
 example1 :: IO ()
 example1 =
-  GH.printByteStringLn $
+  GH.executeCommand $
     GH.error "Something failed."
 ```
 
@@ -47,7 +48,7 @@ someLocation =
 ```haskell
 example2 :: IO ()
 example2 =
-  GH.printByteStringLn $
+  GH.executeCommand $
     GH.warning "Something seems amiss here."
       & GH.location ?~ someLocation
 ```
@@ -55,7 +56,7 @@ example2 =
 <!--
 ```haskell
 main :: IO ()
-main = example1 >> example2
+main = stopCommands >> example1 >> example2
 ```
 -->
 
