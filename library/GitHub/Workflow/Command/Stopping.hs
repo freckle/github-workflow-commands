@@ -28,7 +28,15 @@ import Data.Text qualified as T
 import GitHub.Workflow.Command.Execution
 import GitHub.Workflow.Command.Syntax
 
-suspendCommands :: (MonadCommand m, MonadRandom m) => m a -> m a
+-- | Run an action with processing of workflow commands suspended
+--
+-- GitHub documentation:
+-- <https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#stopping-and-starting-workflow-commands Stopping and starting workflow commands>
+suspendCommands
+  :: (MonadCommand m, MonadRandom m)
+  => m a
+  -- ^ Commands issued by this action will have no effect
+  -> m a
 suspendCommands x = do
   token <- randomSuspendToken
   suspendCommandsWithToken token x
@@ -37,6 +45,9 @@ suspendCommandsWithToken :: MonadCommand m => SuspendToken -> m a -> m a
 suspendCommandsWithToken token x =
   stopCommandsWithToken token *> x <* resumeCommands token
 
+-- | Stops processing any workflow commands
+--
+-- This special command allows you to log anything without accidentally running a workflow command.
 stopCommands :: (MonadCommand m, MonadRandom m) => m SuspendToken
 stopCommands = do
   token <- randomSuspendToken
@@ -46,6 +57,7 @@ stopCommandsWithToken :: MonadCommand m => SuspendToken -> m ()
 stopCommandsWithToken token =
   executeCommand StopCommands {token}
 
+-- | Resume processing workflow commands
 resumeCommands :: MonadCommand m => SuspendToken -> m ()
 resumeCommands token = executeCommand ResumeCommands {token}
 

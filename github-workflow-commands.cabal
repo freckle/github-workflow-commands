@@ -29,6 +29,7 @@ source-repository head
 
 library
   exposed-modules:
+      GitHub.Workflow.Command
       GitHub.Workflow.Command.Annotation
       GitHub.Workflow.Command.Annotation.Commands.Debug
       GitHub.Workflow.Command.Annotation.Commands.Error

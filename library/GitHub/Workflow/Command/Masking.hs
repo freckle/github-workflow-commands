@@ -7,7 +7,10 @@ import Data.Function ((.))
 import Data.Text (Text)
 import GitHub.Workflow.Command.Syntax
 
--- | Command to prevent a string or variable from being printed in the log
+-- | Prevents a string or variable from being printed in the log
+--
+-- GitHub documentation:
+-- <https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#masking-a-value-in-a-log Masking a value in a log>
 newtype AddMask = AddMask
   { value :: Text
   -- ^ An environment variable or string

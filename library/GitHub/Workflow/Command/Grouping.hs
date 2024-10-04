@@ -12,6 +12,9 @@ import GitHub.Workflow.Command.Execution
 import GitHub.Workflow.Command.Syntax
 
 -- | Creates an expandable group in the log
+--
+-- GitHub documentation:
+-- <https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#grouping-log-lines Grouping log lines>
 group
   :: MonadCommand m
   => Text
@@ -25,13 +28,14 @@ group title x =
     *> x
     <* executeCommand GroupEnd
 
--- | Command to start a 'group'
+-- | Starts a 'group'
 newtype GroupStart = GroupStart {title :: Text}
 
 instance ToCommand GroupStart where
   addToCommand GroupStart {title} =
     (name .~ "group") . (message .~ Message title)
 
+-- | Ends a 'group'
 data GroupEnd = GroupEnd
 
 instance ToCommand GroupEnd where

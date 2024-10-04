@@ -19,10 +19,20 @@ import GitHub.Workflow.Command.Syntax.Properties qualified as Properties
 import GitHub.Workflow.Command.Syntax.ToByteString
 import Prelude (Eq, Maybe (..), Ord, Show, not, (<>))
 
+-- | A GitHub workflow command
+--
+-- A 'Command' consists of:
+--
+-- * 'Name' ('HasName')
+-- * 'Message' ('HasMessage')
+-- * 'Properties' ('HasProperties')
+--
+-- Of these, only 'Name' is always required. Some particular types of command require
+-- a message or have restrictions on what properties they support or require.
 data Command = Command
   { name :: Name
-  , properties :: Properties
   , message :: Message
+  , properties :: Properties
   }
   deriving stock (Eq, Ord, Show)
 
