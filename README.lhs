@@ -15,13 +15,12 @@ module Main (main) where
 import Prelude
 
 import Text.Markdown.Unlit ()
-import GitHub.Workflow.Command.Stopping (stopCommands)
 ```
 -->
 
 ```haskell
-import qualified GitHub.Workflow.Command.Annotation as GH
-import Control.Lens
+import qualified GitHub.Workflow.Command as GH
+import Control.Lens ((&), (?~))
 ```
 
 An annotation is at minimum just a string.
@@ -56,7 +55,7 @@ example2 =
 <!--
 ```haskell
 main :: IO ()
-main = stopCommands >> example1 >> example2
+main = GH.suspendCommands $ example1 >> example2
 ```
 -->
 
