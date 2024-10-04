@@ -119,9 +119,7 @@ import GitHub.Workflow.Command.Grouping
   )
 import GitHub.Workflow.Command.Masking (AddMask (..))
 import GitHub.Workflow.Command.Stopping
-  ( ResumeCommands (..)
-  , StopCommands (..)
-  , SuspendToken (..)
+  ( SuspendToken (..)
   , resumeCommands
   , stopCommands
   , suspendCommands
