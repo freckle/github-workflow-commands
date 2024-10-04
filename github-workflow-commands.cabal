@@ -5,7 +5,7 @@ cabal-version: 1.18
 -- see: https://github.com/sol/hpack
 
 name:           github-workflow-commands
-version:        0.0.0.0
+version:        0.0.1.0
 synopsis:       GitHub Actions workflow commands
 description:    For printing workflow commands in GitHub Actions.
                 .
