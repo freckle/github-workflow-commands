@@ -81,58 +81,19 @@ module GitHub.Workflow.Command
   , Value (..)
   ) where
 
-import GitHub.Workflow.Command.Annotation
-  ( Column (..)
-  , Columns (..)
-  , Debug (..)
-  , Error (..)
-  , Extent (..)
-  , File (..)
-  , HasLocationMaybe (..)
-  , Line (..)
-  , Location (..)
-  , Notice (..)
-  , Position (..)
-  , Warning (..)
-  , atColumn
-  , atLine
-  , debug
-  , endColumn
-  , error
-  , extent
-  , file
-  , inFile
-  , line
-  , notice
-  , position
-  , startColumn
-  , warning
-  )
+import GitHub.Workflow.Command.Annotation.Commands.Debug
+import GitHub.Workflow.Command.Annotation.Commands.Error
+import GitHub.Workflow.Command.Annotation.Commands.Notice
+import GitHub.Workflow.Command.Annotation.Commands.Warning
+import GitHub.Workflow.Command.Annotation.File
+import GitHub.Workflow.Command.Annotation.Location
+import GitHub.Workflow.Command.Annotation.Position
+import GitHub.Workflow.Command.Annotation.Position.Column
+import GitHub.Workflow.Command.Annotation.Position.Columns
+import GitHub.Workflow.Command.Annotation.Position.Extent
+import GitHub.Workflow.Command.Annotation.Position.Line
 import GitHub.Workflow.Command.Execution
-  ( MonadCommand (..)
-  , PrintCommands (..)
-  )
 import GitHub.Workflow.Command.Grouping
-  ( GroupEnd (..)
-  , GroupStart (..)
-  , group
-  )
-import GitHub.Workflow.Command.Masking (AddMask (..))
+import GitHub.Workflow.Command.Masking
 import GitHub.Workflow.Command.Stopping
-  ( SuspendToken (..)
-  , resumeCommands
-  , stopCommands
-  , suspendCommands
-  )
 import GitHub.Workflow.Command.Syntax
-  ( Command
-  , HasMessage (..)
-  , HasName (..)
-  , HasProperties (..)
-  , Key (..)
-  , Message (..)
-  , Name (..)
-  , Properties
-  , ToCommand (..)
-  , Value (..)
-  )
