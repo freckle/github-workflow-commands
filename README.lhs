@@ -19,8 +19,8 @@ import Text.Markdown.Unlit ()
 -->
 
 ```haskell
-import qualified GitHub.Workflow.Command.Annotation as GH
-import Control.Lens
+import qualified GitHub.Workflow.Command as GH
+import Control.Lens ((&), (?~))
 ```
 
 An annotation is at minimum just a string.
@@ -28,7 +28,7 @@ An annotation is at minimum just a string.
 ```haskell
 example1 :: IO ()
 example1 =
-  GH.printByteStringLn $
+  GH.executeCommand $
     GH.error "Something failed."
 ```
 
@@ -47,7 +47,7 @@ someLocation =
 ```haskell
 example2 :: IO ()
 example2 =
-  GH.printByteStringLn $
+  GH.executeCommand $
     GH.warning "Something seems amiss here."
       & GH.location ?~ someLocation
 ```
@@ -55,7 +55,7 @@ example2 =
 <!--
 ```haskell
 main :: IO ()
-main = example1 >> example2
+main = GH.suspendCommands $ example1 >> example2
 ```
 -->
 

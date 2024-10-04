@@ -18,6 +18,13 @@ import GitHub.Workflow.Command.Syntax
   )
 import GitHub.Workflow.Command.Syntax qualified as Syntax
 
+-- | Creates a notice message and prints the message to the log
+--
+-- The message can be associated with a particular file in your repository,
+-- and optionally also a position within the file. See 'HasLocationMaybe'.
+--
+-- GitHub documentation:
+-- <https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#setting-a-notice-message Setting a notice message>
 data Notice = Notice
   { message :: Message
   , properties :: Properties
