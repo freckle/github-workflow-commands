@@ -7,23 +7,6 @@ module GitHub.Workflow.Command
     MonadCommand (..)
   , PrintCommands (..)
 
-    -- * Anatomy of a command
-  , Command
-
-    -- ** Name
-  , Name (..)
-  , HasName (..)
-
-    -- ** Message
-  , Message (..)
-  , HasMessage (..)
-
-    -- ** Properties
-  , Properties
-  , HasProperties (..)
-  , Key (..)
-  , Value (..)
-
     -- * Commands
   , ToCommand (..)
 
@@ -79,6 +62,23 @@ module GitHub.Workflow.Command
   , atLine
   , Column (..)
   , atColumn
+
+    -- * Anatomy of a command
+  , Command
+
+    -- ** Name
+  , Name (..)
+  , HasName (..)
+
+    -- ** Message
+  , Message (..)
+  , HasMessage (..)
+
+    -- ** Properties
+  , Properties
+  , HasProperties (..)
+  , Key (..)
+  , Value (..)
   ) where
 
 import GitHub.Workflow.Command.Annotation
