@@ -91,4 +91,5 @@ tests:
     dependencies:
       - github-workflow-commands
       - lens
+    build-tools:
       - markdown-unlit
